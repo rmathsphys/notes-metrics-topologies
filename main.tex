@@ -7,29 +7,24 @@
 
 \usepackage{tikz}
 
-% \renewcommand{\thesection}{\arabic{section}}
-% \renewcommand{\thesubsection}{\arabic{subsection}}
-% \renewcommand{\thesubsubsection}{\arabic{subsubsection}}
 \setlist[enumerate,1]{label=(\roman*)}
 \setlist[enumerate,2]{label=\alph*.}
 
 \newcommand{\oB}{B}
 \newcommand{\cB}{\overline{B}}
 
-\title{Norms, Metric and Topologies}
-\subtitle{Lecture Notes (Draft)}
+\title{Norms, Metrics and Topologies}
+\subtitle{Lecture Notes}
 \author{Rashid M. Talha}
-\affiliation{NUST Mathematics Society}
+\affiliation{School of Natural Sciences, NUST}
 \date{\today}
 \begin{document}
 
 \maketitle
 \begin{center}
-  These notes are a work-in-progress.
+  \textbf{Notes.}\par
+  First delivered at NUST during the fall semester, 2022--23. Currently incomplete.
 \end{center}
-
-% \section{Motivation}
-% Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
 \section{Review, terminology, and notation}
 BASICS OF SETS. SOME NOTATION.
@@ -850,7 +845,7 @@ COMPOSITION OF CTS FUNCTIONS IS CTS. TWO PROOFS.
   Suppose that $X, Y, Z$ are metric spaces and $f:X \to Y$, and $g:Y \to Z$ are continuous functions. Then, $g \circ f: X \to Z$ is also continuous.
 \end{nprop}
 \begin{proof}
-  Let $U$ be an open subset of $Z$. Then $g^{-1}(U)$ is open in $Y$. So, $f^{-1}(g^{-1}(U)) \equiv (g \circ f)^{-1}(U)$ is open in $X$.
+  Take $U \subseteq Z$ open. Then $g^{-1}(U) \subseteq Y$ is open. So, $f^{-1}(g^{-1}(U)) \equiv (g \circ f)^{-1}(U)$ is open in $X$.
 \end{proof}
 
 RESTRICTIONS OF CTS MAPS ARE CTS. PROJECTION MAPS ARE CTS. CTS MAP INTO A PRODUCT SPACE.
