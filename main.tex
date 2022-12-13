@@ -905,15 +905,43 @@ Show that
   The pair $(X,T)$ is called a topological space. The elements of $T$ are called open sets.
 \end{ndfn}
 
-EXPLANATION OF (T2) AND (T3) AND THE NAME OPEN SETS.
+These axioms are chosen such that the elements of $T$ (these are the distinguished subsets of $X$) closely resemble the open sets in metric spaces. However, note that $T$ is not required to be constructed out of a metric space. This idea (and the unfortunate clash of terminology) takes some time to get used to. We shall aim to clarify several associated misconceptions with the help of examples below.
 
-When it is clear from the context, we directly call $X$ the topological space, without explicitly specifying $T$.
+\begin{remark}
+  When it is clear from the context, we directly call $X$ the topological space, without explicitly specifying $T$.
+\end{remark}
 
-CLOSED IF ITS COMPLEMENT IS OPEN.
+\begin{remark}
+  There is no notion of an open/closed ball in a general topological space; because this relies on the metric. Hence, the `topological' open sets and `metric-based' open sets have very different origins. The axioms (T1)--(T3) simply try to ensure that the `topological' open sets try to match the behaviour of the `metric-based' open sets as much as possible.
+\end{remark}
+
+The concept of a closed set can be easily re-defined in the topological setting. The following definition ensure that the `topological' closed sets behave in the same way as the closed sets encountered in metric spaces.
+\begin{ndfn}
+  A subset $F$ of $X$ is called closed in $(X,T)$ if its complement $X-F$ is in $T$.
+\end{ndfn}
+
+SIMPLE EXAMPLES.
+\begin{negg}
+  Let $X$ be any set. Take $T = \set{\emptyset, X}$. Then, the axioms (T1), (T2), and (T3) are trivially fulfilled. Therefore, $(X,T)$ forms a topological space. Such a choice of $T$ is called the indiscrete topology on $X$.
+\end{negg}
+
+\begin{negg}
+  Let $X$ be any set. Take $T = P(X)$. Then, (T1) is trivially fulfilled. We check (T2) and (T3).
+
+  Therefore, $(X,T)$ forms a topological space. Such a choice of $T$ is called the discrete topology on $X$.
+\end{negg}
+
+% \begin{negg}
+%   Let $X = \set{1,2,3}$. Take $T = P(X)$. Then, (T1) is trivially fulfilled. We check (T2) and (T3).
+
+%   Therefore, $(X,T)$ forms a topological space. Such a choice of $T$ is called the discrete topology on $X$.
+% \end{negg}
+
+\begin{negg}
+  Let $(X,d)$ be a metric space, and $T = \set{U \subseteq X | U\ \text{open in}\ X\ \text{w.r.t.}\ d}$. Then, $(X,T)$ is a topological space. We say that $T$ is the topology induced by the metric $d$.
+\end{negg}
 
 ALTERNATIVE DEFINITION OF TOPOLOGY IN TERMS OF CLOSED SETS.
-
-TOPOLOGY INDUCED BY THE METRIC.
 
 MORE EXAMPLES.
 
