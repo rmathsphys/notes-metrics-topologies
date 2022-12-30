@@ -1,0 +1,85 @@
+%!TEX root = ../main.tex
+\section{Compactness}
+\begin{ndfn}[Open cover]
+  An open cover of $(X,T)$ is a collection of open sets $\cover{U} \subseteq T$, whose union contains $X$. That is
+  \begin{equation*}
+    X \subseteq \bigcup_{U \in \cover{U}} U.
+  \end{equation*}
+\end{ndfn}
+
+\begin{ndfn}[Subcover]
+  Let $\cover{U}$ be an open cover of $(X,T)$. An open subcover of $\cover{U}$ is a set $\cover{U}' \subseteq \cover{U}$ such that $\cover{U}'$ is itself an open cover of $X$.
+  \begin{equation*}
+    \cover{U}' \subseteq \cover{U}
+    \qquad\text{and}\qquad
+    X \subseteq \bigcup_{U \in \cover{U}'} U.
+  \end{equation*}
+\end{ndfn}
+
+\begin{negg}
+  Examples.
+\end{negg}
+
+
+\begin{ndfn}[Compact]
+  A topological spaces $X$ is called compact if every open cover of $X$ has a finite subcover.
+\end{ndfn}
+
+\begin{negg}
+  Examples.
+\end{negg}
+
+\begin{ndfn}
+  A subset $S \subseteq X$ is called compact if every open cover of $S$ by open sets of $X$ has a finite subcover.
+\end{ndfn}
+
+\begin{nlemma}
+  $S \subseteq X$ is compact if and only if $S$ is compact as a topological spaces with the subspace topology.
+\end{nlemma}
+\begin{proof}
+  TBC.
+\end{proof}
+
+\begin{nthm}
+  Every closed interval $[a,b] \subseteq \R$ is compact.
+\end{nthm}
+
+\begin{nthm}
+  Let $X$ be compact, and $S \subseteq X$ be closed. Then, $S$ is compact.
+\end{nthm}
+
+\begin{nthm}
+  Let $X$ be Hausdorff, and $S \subseteq X$ be compact. Then, $S$ is bounded.
+\end{nthm}
+
+\begin{nthm}[Heine-Borel]
+  Consider $\R$ with the standard topology, and let $K \subseteq \R$ be any subset. Then,
+  \begin{equation*}
+    K\ \text{compact} \iff K\ \text{closed and bounded}.
+  \end{equation*}
+\end{nthm}
+This remain true when $\R$ is replace with $\R^n$. This result is not true in a general metric-induced topological space.
+
+\begin{nthm}
+  Let $X$, $Y$ be compact topological spaces, then $X \times Y$ is compact (with the product topology).
+\end{nthm}
+
+A generalisation of this result (known as Tychonov's theorem) states that the topological product of an arbitrary number of compact spaces also remains compact in the product topology.
+
+\begin{nthm}
+  Let $f: X \to Y$ be a continuous map. If $K \subseteq X$ is compact then $f(K)$ is also compact.
+\end{nthm}
+This shows that compactness is a topological property.
+
+\begin{nthm}
+  Let $f: X \to Y$ be a continuous bijection. If $X$ is compact and $Y$ is Hausdorff, then $f$ is a homeomorphism.
+\end{nthm}
+
+The following is a generalisation of the extreme value theorem to general topological spaces.
+\begin{nthm}
+  Let $X$ be compact and $f: X \to \R$ be continuous. Then, $f$ is bounded and attains its bounds.
+\end{nthm}
+
+\begin{ndfn}
+  A normed spaces $V$ is finite dimensional (as a vector space) if and only if its closed unit ball is compact.
+\end{ndfn}

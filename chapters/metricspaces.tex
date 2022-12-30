@@ -1,0 +1,565 @@
+%!TEX root = ../main.tex
+\section{Metric Spaces}
+More general than norms is the notion of a metric. The idea is that a metric is a measure of distance between any two elements in a given set; the norm, on the other hand, is a measure of magnitude of each element individually.
+
+COMMENT ABOUT REAL ANALYSIS.
+
+\begin{ndfn}[Metric space]
+  Let $X$ be any set. Let $d : X \times X \to \R$ be a function such that
+  \begin{enumerate}
+  \item $d(x,y) \geq 0, \forall x,y \in X$, \hfill (positive)
+  \item $d(x,y) = 0 \iff x=y$, \hfill (definite)
+  \item $d(x,y) = d(y,x), \forall x,y \in X$, \hfill (symmetric)
+  \item $d(x,z) \leq d(x,y) + d(y,z), \forall x,y,z \in X$. \hfill (triangle inequality)
+  \end{enumerate}
+  Then, $d$ is called a metric on $X$, and the pair $(X,d)$ is called a metric space.
+\end{ndfn}
+
+Unlike a norm, a metric doesn't require the underlying set to be a vector space. While we will often work with sets $X$ that carry a natural vector space structure, the metric properties will be independent from it unless the metric is being \emph{induced} by the norm.
+
+\begin{nprop}[Metric induced by a norm]
+  let $(X, \norm{\cdot})$ be a normed vector space. Then $d : X \times X \to \R$ with $d(x,y) \coloneqq \norm{x-y}$ is a metric on $X$. Such a metric is called the metric induced by the norm.
+\end{nprop}
+\begin{proof}
+  The proof is left as an exercise to the reader.
+\end{proof}
+
+The metric $d:\R^n \times \R^n \to \R$ induced by the Euclidean norm $\norm{\cdot}_2$ is known as the standard (or Euclidean) metric on $\R^n$. When we consider $\R^n$ as a metric space, without specifying the metric, the underlying metric is assumed to be the standard metric.
+
+\begin{negg}[Discrete metric]
+  Let $X$ be any set, and consider the function $d_s:X \times X \to \R$ with
+  \begin{equation*}
+  d_s = \begin{cases}
+  0, & x=y\\
+  1, & x \neq y
+  \end{cases}
+  \end{equation*}
+  This is a metric in $X$, known as the discrete metric. This is often very useful for producing counterexamples.
+\end{negg}
+
+\begin{negg}[Sunflower metric]
+  The function $d:\R^2 \times \R^2 \to \R$ with
+  \begin{equation*}
+  d = \begin{cases}
+  \norm{\vec{x}-\vec{y}}, & \vec{x}\;\text{and}\;\vec{y}\;\text{lie on the same line through}\;(0,0)\\
+  \norm{\vec{x}}+\norm{\vec{y}}, & \text{otherwise}
+  \end{cases}
+  \end{equation*}
+  defines a metric on $\R^2$, known as the sunflower metric. (Check.)\eggqed
+\end{negg}
+
+\begin{negg}[Jungle river metric]
+  Consider the function $d:\R^2 \times \R^2 \to \R$ with
+  \begin{equation*}
+  d = \begin{cases}
+  \abs{y_1 - y_2}, & \text{if}\;x_1 = x_2\\
+  \abs{y_1} + \abs{x_1 - x_2} + \abs{y_2}, & \text{otherwise}
+  \end{cases}
+  \end{equation*}
+  This is known as the jungle river metric on $\R^2$. (Check.)\eggqed
+\end{negg}
+
+\begin{negg}[Hamming distance]
+  A word $w$, of length $n$ is an expression of the form as $w=w_1 w_2 \cdots w_n$, where $w_i$ are symbols (called letters) from a fixed set. The Hamming distance between any two such words $x=x_1 x_2 \cdots x_n$ and $y=y_1 y_2 \cdots y_n$ is defined to be
+  \begin{equation*}
+    d(x,y) \coloneqq \sum_{j=1}^{n} \delta(x_j, y_j),
+    \qquad\text{with}\qquad
+    \delta(x_j, y_j) = \begin{cases}
+    0, & x_j = y_j\\
+    1, & x_j \neq y_j
+    \end{cases}
+  \end{equation*}
+
+  Here we check that this function satisfies the triangle inequality. Let $x,y,z$ be any three words of length $n$. Then,
+  \begin{equation*}
+    d(x,y) + d(y,z)
+    = \sum_{j=1}^{n} \delta(x_j, y_j) + \sum_{j=1}^{n} \delta(y_j, z_j)
+    = \sum_{j=1}^{n} \left(\delta(x_j, y_j) + \delta(y_j, z_j)\right)
+    \equiv \sum_{j=1}^{n} \alpha_j.
+  \end{equation*}
+  Here, $\alpha_j \equiv \delta(x_j, y_j) + \delta(y_j, z_j)$. Note that we have $\alpha_j \in \set{0,1,2}$ only. Now, we consider these three cases separately (for fixed $j$).
+  \begin{align*}
+    \alpha_j &= 0:\quad x_j = y_j = z_j \implies x_j = z_j \implies \delta(x_j, z_j) = 0 \leq \alpha_j\\
+    \alpha_j &= 1:\quad \delta(x_j, z_j) \in \set{0,1} \implies \delta(x_j, z_j) \leq 1 = \alpha_j\\
+    \alpha_j &= 2:\quad \delta(x_j, z_j) \in \set{0,1} \implies \delta(x_j, z_j) \leq 2 = \alpha_j
+  \end{align*}
+
+  Overall, $\delta(x_j, z_j) \leq \alpha_j$ for all $j$. Hence,
+  \begin{equation*}
+    d(x,z) = \sum_{j=1}^{n} \delta(x_j, z_j) \leq \sum_{j=1}^{n} \alpha_j = d(x,y) + d(y,z).\eggqed
+  \end{equation*}
+\end{negg}
+
+\begin{negg}
+  It is easy to check that the following are all metrics on $\Z$,
+  \begin{enumerate}
+  \item $d(n,m) = \abs*{m-n}$,
+  \item $d(n,m) = \abs*{m^3 - n^3}$,
+  \item $d(n,m) = \abs*{\atan m - \atan n}$,
+  \item $d(n,m) = \frac{\abs*{m-n}}{1 + \abs*{m-n}}$,
+  \end{enumerate}
+  with $m,n \in \Z$. \eggqed
+\end{negg}
+
+\subsection{Equivalent metrics}
+There are a few different notions of equivalence for metrics. One is a generalization of the equivalence of norms, this is known as strong equivalence.
+\begin{ndfn}[Strong equivalence of metrics]
+  Two metrics $d$ and $d'$ on $X$ are said to be (strongly or Lipschitz) equivalent if and only if there exist $\alpha_1, \alpha_2 \in \R$ with $\alpha_1, \alpha_2 > 0$, such that for all $x,y \in X$
+  \begin{equation*}
+    \alpha_1 d(x,y) \leq d'(x,y) \leq \alpha_2 d(x,y).
+  \end{equation*}
+\end{ndfn}
+However, a more general equivalence, called the weak or topological equivalence, relies upon the topology induced by the metrics. We shall explore this further in later sections. For now, equivalence shall mean strong equivalence.
+
+\begin{nlemma}
+  Let $d$ and $d'$ be metrics induced by $\norm{\cdot}$ and $\norm{\cdot}'$, respectively. Then, $d$ and $d'$ are equivalent if and only if $\norm{\cdot}$ and $\norm{\cdot}'$ are equivalent.
+\end{nlemma}
+
+\subsection{Subspace and product metrics}
+We have already seen that many different metrics can be defined on a given set $X$. However, given a metric space $(X,d)$, a subset $Y \subseteq X$ can be assigned a special metric called the \emph{subspace} metric inherited from the original metric space.
+
+This is primarily how the metric spaces $\Z$ and $\Q$ are defined; as subsets of the metric space $\R$ with the standard metric.
+\begin{nthm}[Subspace metric]
+  Let $(X,d)$ be a metric space and $Y \subseteq X$. Then $(Y,d_Y)$ is a metric space, with $d_Y : Y \times Y \to \R$ given by
+  \begin{equation*}
+    d_{Y}(x) = d(x), \qquad \forall x \in Y.
+  \end{equation*}
+  $(Y, d_Y)$ is called a metric subspace of $(X,d)$.
+\end{nthm}
+The definition simply states that $Y$ uses the same metric function that $X$ uses.
+
+\begin{remark}
+  A statement like `the metric space $[-1,3]$' without the identification of the metric means that the subset $[-1,3]$ is being considered as the subspace of $\R$.
+\end{remark}
+
+\subsection{Limits and convergence in metric spaces}
+Throughout this section, $(X,d)$ shall represent a general metric space.
+
+\begin{ndfn}
+  A sequence $(a_n)$ in $X$, is a function $a:\N \to X$ with $n \mapsto a_n \in X$.
+\end{ndfn}
+
+\begin{ndfn}
+  A sequence $(a_n)$ in $X$, is said to converge to $\ell \in X$ as $n \to \infty$ if
+  \begin{equation*}
+    \forall \varepsilon > 0, \exists N \in \N\;\text{such that}\;n \geq N \implies d(a_n, \ell) < \varepsilon.
+  \end{equation*}
+  Such a sequence is called convergent in $(X,d)$, and we write $\lim_{n\to\infty} a_n = \ell$, or simply $(a_n) \to \ell$, suppressing the underlying metric space.
+\end{ndfn}
+
+This is a generalisation of the definition of the limit of a sequence in $\R^n$. There $\norm*{a_n - l}$ is used in place of $d(a_n, \ell)$. But this simply corresponds to using the Euclidean metric for the calculation of distance.
+
+However, this generalisation suggests that the convergence of $(a_n)$ could depend on the choice of the metric.
+\begin{negg}
+  Consider the sequence $a_n = 1/n$ defined on $\R$. It is easy to show that this converges to $0$ under the standard metric of $\R$.
+
+  However, this sequence does not converge in the discrete metric, $d_s$. For example, pick $\varepsilon = 1/2$, then
+  \begin{equation*}
+    d_s\left(\frac{1}{n},\ell\right) < \varepsilon \iff d_s\left(\frac{1}{n},\ell\right) = 0 \iff 1/n = \ell, \forall n>N
+  \end{equation*}
+  for some $N \in \N$. This is not possible. Therefore, $1/n$ is not convergent in $(\R, d_s)$.
+\end{negg}
+
+\begin{nex}
+  Suppose $(a_n)$ is a convergent sequence in a metric space $X$, using the discrete metric. What can be concluded about $(a_n)$?
+\end{nex}
+
+\begin{nlemma}
+  Every convergent sequence $(a_n)$ in $(X,d)$ has a unique limit.
+\end{nlemma}
+\begin{proof}
+  Suppose $(a_n)$ converges to two limits $\ell_1 \neq \ell_2$. Let $\varepsilon = \frac{1}{2} d(\ell_1,\ell_2)$. Then, $\varepsilon > 0$. So, there exist $N_1, N_2 \in \N$ such that
+  \begin{align*}
+    d(a_n, \ell_1) &< \frac{\varepsilon}{2} \qquad\forall n \geq N_1\\
+    d(a_n, \ell_2) &< \frac{\varepsilon}{2} \qquad\forall n \geq N_2
+  \end{align*}
+  Let $N = \max\set{N_1, N_2}$. Then, for all $n \geq N$,
+  \begin{equation*}
+    2\varepsilon = d(\ell_1, \ell_2)
+    \leq d(\ell_1, a_n) + d(a_n, \ell_2) < \varepsilon.
+  \end{equation*}
+  This is a contradiction. So, $\ell_1 = \ell_2$.
+\end{proof}
+
+\begin{nprop}
+  Let $d$ and $d'$ be two equivalent metrics on $X$. A sequence $(a_n)$ converges in $X$ with respect to $d$ if and only if it converges with respect to $d'$.
+\end{nprop}
+This result clarifies an important point: equivalent norms and metrics have the same convergence properties.
+
+Now, we consider a special class of sequences called Cauchy sequences.
+\begin{ndfn}[Cauchy sequence]
+  A sequence in $X$ is called a Cauchy sequence if
+  \begin{equation*}
+  \forall \varepsilon > 0, \exists N \in \N\;\text{such that}\;n,m \geq N \implies d(a_n, a_m) < \varepsilon.
+  \end{equation*}
+\end{ndfn}
+
+\begin{nthm}
+  In a metric space, every Cauchy sequence is bounded.
+\end{nthm}
+\begin{proof}
+  Let $(a_n)$ be a Cauchy sequence. Then, there exists $N \in \N$ such that
+  \begin{equation*}
+    d(x_m, x_n) < 1 \qquad\forall m,n \geq N.
+  \end{equation*}
+  In particular, $d(x_m, x_N) < 1$ for all $m \geq N$.
+
+  There are only finitely many terms preceeding $a_N$. Set
+  \begin{equation*}
+    R = \max_{1 \leq j \leq N} d(x_j, x_N).
+  \end{equation*}
+  So, for all $m \leq N$, $d(x_j, x_N) \leq R$. Therefore, $d(x_j, x_N) \leq R + 1$, for all $j \in \N$.
+\end{proof}
+
+\begin{nthm}
+  Let $(a_n)$ be a Cauchy sequence with a convergent subsequence $a_{n_{k}} \to a$. Then, $a_n \to a$ also.
+\end{nthm}
+\begin{proof}
+  Let $(a_n)$ be a Cauchy sequence, and suppose $(a_{n_{k}})$ is a convergent subsequence with the limit $a$. Then, for all $\varepsilon>0$, there exist $N_1, N_2 \in \N$ such that
+  \begin{align*}
+    d(a_m, a_n) &<\varepsilon/2 \qquad\forall m,n\geq N_1\\
+    d(a_{n_{k}}, a) &<\varepsilon/2 \qquad\forall n_{k}\geq N_2.
+  \end{align*}
+  Set $N = \max\set{N_1, N_2}$ and fix a $n_k \geq N$. Then, for all $m \geq N$
+  \begin{equation*}
+    d(a_m, x) \leq d(a_m, a_{n_{k}}) + d(a_{n_{k}}, x)
+    < \varepsilon.
+  \end{equation*}
+  This means that $a_m \to a$ as $m \to \infty$.
+\end{proof}
+
+The similarity between the definition of convergent and Cauchy sequences motivates the following important result
+\begin{nthm}
+  Every convergent sequence in $(X,d)$ is a Cauchy sequence.
+\end{nthm}
+\begin{proof}
+  Let $(a_n)$ be a convergent sequence in $X$ with the limit $\ell$. Then, for $\varepsilon > 0$, there exists $N \in \N$ such that
+  \begin{equation*}
+    d(a_n, \ell) < \frac{\varepsilon}{2}
+    \qquad\forall n \geq N.
+  \end{equation*}
+  So, for all $n,m \geq N$ we have
+  \begin{equation*}
+    d(a_n, a_m) \leq d(a_n, \ell) + d(\ell, a_m) < \varepsilon.
+  \end{equation*}
+  Therefore, $(a_n)$ is a Cauchy sequence.
+\end{proof}
+It is crucial to note that the converse of this statement is not true in general.
+
+\begin{ndfn}
+  A metric space $(X,d)$ is called complete if every Cauchy sequence $(a_n)$ in $X$ converges to a limit $\ell$ in $X$.
+\end{ndfn}
+
+\begin{nthm}[Bolzano--Weierstrass]
+  Every bounded sequence in $\R^n$ has a convergent subsequence.
+\end{nthm}
+
+\begin{nprop}
+  $\R$ with the standard metric is complete.
+\end{nprop}
+\begin{proof}
+  Let $(a_n)$ be a Cauchy sequence in $\R$. Then, $(a_n)$ is bounded. This implies that it has a convergent subsequence, with the limit $a \in \R$. Therefore, $(a_n)$ itself converges to $a \in \R$. This shows that $\R$ is (Cauchy) complete.
+\end{proof}
+
+\begin{nprop}
+  $\R^d$ with the standard metric is complete.
+\end{nprop}
+
+\begin{nprop}
+  The $\Q$ with the standard metric inherited from $\R$ is not complete.
+\end{nprop}
+\begin{proof}
+  We need to find a sequence of rational numbers, that is also Cauchy, but whose limit is not in $\Q$. This is left as an exercise.
+\end{proof}
+This result highlights the necessity of the limit being \emph{inside} the metric space. If the sequence `converges' to a value that lies \emph{outside} the metric space, then (by definition) the given sequence is not convergent.
+
+\begin{nex}
+  Show that the open interval $(0,1) \subset \R$ is not complete under the usual metric inherited from $\R$. [Hint: find a sequence in $(0,1)$ that is Cauchy but not convergent in $(0,1)$.]
+\end{nex}
+
+\paragraph{Some other topics of interest.} Banach space, Hilbert space, completions.
+
+\subsection{Open sets \& closed sets in metric spaces}
+Throughout this section, $(X,d)$ shall represent a general metric space.
+
+\begin{ndfn}[Open and closed balls]
+  An open ball of radius $r>0$, centred at $a \in X$ is a set $\oB_{r}(a) = \set{x \in X \st d(x,a) < r}$. A closed ball, likewise, is a set $\cB_{r}(a) = \set{x \in X \st d(x,a) \leq r}$.
+\end{ndfn}
+This leads us to define the notion of an \emph{open (closed) set}; one of the most important concepts in this course.
+
+\begin{ndfn}[Open and closed sets]
+  A set $A \subseteq X$ is called open if $\forall x \in A$, $\exists \varepsilon > 0$, such that $\oB_{\varepsilon}(x) \subseteq A$. A set $F$ is called closed if and only if its complement in $X$ is open (i.e. iff $X-F$ is open).
+\end{ndfn}
+It is very important to note that if a set is \emph{not} open, then it is not necessarily closed. In particular, a set can be either open, closed, both open and closed, or neither open nor closed.
+
+MORE EXAMPLES
+
+\begin{negg}
+  The single point set $\set{x}$, with $x\in\R$ is not open and closed in the metric space $\R$, using the standard metric. However, in the discrete metric $\set{x}$ is open.
+\end{negg}
+
+\begin{nlemma}
+  The open ball is open. The closed ball is closed.
+\end{nlemma}
+
+\begin{nthm}
+  The sets $\emptyset$ and $X$ are always both open and closed in any metric space.
+\end{nthm}
+\begin{proof}
+  By definition, $\emptyset$ is open if
+  \begin{equation*}
+    \forall x \in X \left(x \in \emptyset \implies \exists\varepsilon>0 (x \in B_{\varepsilon}(x) \subseteq \emptyset)\right).
+  \end{equation*}
+  But $x \in \emptyset$ is always false, so this statement is vacuously true. Thus, $\emptyset$ is open.
+
+  Next, $X$ is open if
+  \begin{equation*}
+    \forall x \in X \left(x \in X \implies \exists\varepsilon>0 (x \in B_{\varepsilon}(x) \subseteq X)\right).
+  \end{equation*}
+  But both $x \in X$ and $B_{\varepsilon}(x) \subseteq X$ are always true. So, this statement is always true. Thus, $X$ is open.
+
+  Now, $X$ is open, so $\emptyset = X-X$ is closed. Similarly, $\emptyset$ is open, so $X = X-\emptyset$ is closed.
+\end{proof}
+
+The arbitrary union, and the finite intersection of open sets is open.
+\begin{nthm}
+  The following statements are true.
+  \begin{enumerate}
+  \item Let $A$ be any indexing set. If $U_{\alpha}$ is open $\forall\alpha\in A$, then $\bigcup_{\alpha\in A} U_{\alpha}$ is open.
+  \item If $U_{j}$ is open for all $1 \leq j \leq N$, then $\bigcap_{j=1}^{N} U_{j}$ is open.
+  \end{enumerate}
+\end{nthm}
+\begin{proof}
+  TBC.
+\end{proof}
+
+However, the situation is reversed for closed sets.
+\begin{nthm}
+  The following statements are true.
+  \begin{enumerate}
+  \item Let $A$ be any indexing set. If $F_{\alpha}$ is closed $\forall\alpha\in A$, then $\bigcap_{\alpha\in A} F_{\alpha}$ is closed.
+  \item If $F_{j}$ is closed for all $1 \leq j \leq N$, then $\bigcup_{j=1}^{N} F_{j}$ is closed.
+  \end{enumerate}
+\end{nthm}
+\begin{proof}
+  We apply the previous theorem to obtain these results.
+  \begin{enumerate}
+  \item Let $F_{\alpha}$ be closed, then $X-F_{\alpha}$ is open for all $\alpha \in A$. Then,
+  \begin{equation*}
+    X - \bigcap_{\alpha\in A} F_{\alpha}
+    =  \bigcup_{\alpha\in A} \left(X - F_{\alpha}\right)
+  \end{equation*}
+  is an arbitrary union of open sets. So, it is open. Therefore, $\bigcap_{\alpha\in A} F_{\alpha}$ is closed.
+
+  \item Let $F_{j}$ be closed, then $X-F_{j}$ is open for all $1 \leq j \leq n$. Then,
+  \begin{equation*}
+    X - \bigcup_{j=1}^{N} F_{j}
+    =  \bigcap_{j=1}^{N} \left(X - F_{j}\right)
+  \end{equation*}
+  is a finite intersection of open sets. So, it is open. Therefore, $\bigcup_{j=1}^{N} F_{j}$ is closed.
+  \end{enumerate}
+\end{proof}
+
+\begin{negg}
+  Consider the infinite collection $\set{(-1/n, \frac{1}{n}) \st n \in \N_{+}}$ of open intervals in $\R$. The intersection of all of these sets is $\bigcap_{n \in \N_{+}} (-1/n, 1/n) = \set{0}$, and this is not open (and closed) in $\R$.
+
+  This shows that the intersection of infinitely many open sets is not guaranteed to be open.
+\end{negg}
+
+\begin{nex}
+  Find an infinite collection of closed sets in $\R$ whose union \emph{is not} closed in $\R$. Find another such collection whose union \emph{is} closed in $\R$.
+\end{nex}
+
+The terminology of open sets allows us to express the definition of convergence in the terminology of open sets. This will carry over into topological spaces.
+\begin{nlemma}
+  For a sequence $x_n \to x$ if and only if for all open sets $U$ containing $x$, there exists $N \in \N$ such that $x_n \in U$, for all $n \geq N$.
+\end{nlemma}
+\begin{proof}
+  Suppose $x_n \to x$. Take any $U$ open in $X$, with $x \in U$. Then, $\exists \varepsilon>0$ such that $\oB_{\varepsilon}(x) \subseteq U$.
+
+  Now, $x_n \to x$ means that $\exists N \in \N$ such that $d(x_n, x) < \varepsilon$, for all $n \geq N$. Therefore, $x_n \in \oB_{\varepsilon}(x) \subseteq U$, for all $n \geq N$. So, for all $n \geq N$, $x_n \in U$.
+
+  Conversely, for all $\varepsilon>0$ consider $\oB_{\varepsilon}(x)$. This is open and contains $x$. So, $\exists N \in \N$ such that $x_n \in \oB_{\varepsilon}(x)$ for all $n \geq N$. Therefore, $d(x_n, x) < \varepsilon$ for all $n \geq N$.
+
+  Overall, $\forall \varepsilon>0$, $\exists N \in \N$ such that $d(x_n, x) < \varepsilon$, for all $n \geq N$; i.e. $x_n \to x$.
+\end{proof}
+
+\begin{nprop}
+  Take subset $F \subseteq X$ and a convergent sequence $x_n \to x \in X$ such that $(x_n) \in F$ for all $n$. Then, $F$ is closed if and only if $x \in F$.
+\end{nprop}
+\begin{proof}
+  Suppose $F$ is closed, and $x_n \in F$ for all $n$, and $x_n \to x$. Assume that $x \notin F$. Then, $x \in X-F$, and $X-F$ is open. So, $\exists N \in \N$ such that $x_n \in X-F$ for all $n \geq N$. This contradicts the criteria that $x_n \in F$ for all $n$. So, $x \in F$ also.
+
+  Conversely, suppose $F$ is not closed. Then, $X-F$ is not open; i.e. there exists some $x \in X-F$ such that there is no $\varepsilon>0$ with $\oB_{\varepsilon}(x) \subseteq X - F$.
+
+  Then, for each $k \in \N$, there exists some $x_k \in \oB_{\varepsilon}(x)$ such that $x_k \notin X-F$; i.e. $x_k \in F$. Then, $x_k \to x$. But then $x \in F$ by the hypothesis of the proposition, contradicting $x \in X-F$. So, $F$ must be closed.
+\end{proof}
+
+The following results establish a neat connection between the completeness and closedness of a subset of $X$.
+\begin{nprop}
+  Consider $S \subset X$ with the subspace metric. If $S$ is complete then $S$ is a closed subset of $X$.
+\end{nprop}
+\begin{proof}
+  Suppose that $(x_n) \in S$ with $x_n \to x$. Then, $(x_n)$ is a Cauchy sequence in $S$. So, it converges to some $y \in S$. Since, $x_n, y \in S$, we obtain that $d_{S}(x_n, y) = d(x_n, y)$. So, $x_n \to y$ in $X$. Then, by the uniqueness of the limit $y=x$. So, $x \in S$. Therefore, $S$ is closed.
+\end{proof}
+
+\begin{negg}
+  We can immediately apply this result to conclude that $\Z \subseteq \R$ is closed.
+\end{negg}
+
+\begin{nprop}
+  Consider $S \subset X$ with the subspace metric. If $X$ is complete and $S$ is closed then $S$ is complete.
+\end{nprop}
+\begin{proof}
+  If $(x_n)$ is Cauchy in $S$ then $(x_n)$ is also Cauchy in $X$, so it converges to some $x \in X$. Now, $S$ is closed, so $x \in S$. Therefore, $x_n \to x$ in S; i.e. $S$ is complete.
+\end{proof}
+
+The concept of open (closed) sets is important because many of the characteristics studied in analysis can be expressed in terms of open sets. For example, the convergence of a sequence, which intuitively relies on the metric $d$, was neatly expressed in terms of open sets. This encourages us to define a weaker notion of equivalence for metrics.
+\begin{ndfn}
+  Two metrics $d$ and $d'$ are called topologically equivalent, if the set of open sets of $d$ coincides with the set of of open sets of $d'$.
+\end{ndfn}
+From now only equivalence of metrics shall mean `topological equivalence.' Indeed, it is easy to show that if two metrics are strongly equivalent, then they are also topologically equivalent.
+
+\begin{negg}
+  The metrics $d(x,y)$ and $d'(x,y) \coloneq \max\left(1, d(x,y)\right)$ are topologically equivalent, but not strongly equivalent.
+\end{negg}
+
+It follows immediately from this definition that if $d$ and $d'$ are topologically equivalent, and a sequence $(x_n)$ converges in $(X, d)$, then it also converges in $(X, d')$. The proof is left as an exercise.
+
+\subsection{Continuity in metric spaces}
+Throughout this section, $(X,d)$ shall represent a general metric space.
+
+\begin{ndfn}
+  Let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces. Then $f:X \to Y$ is said to be continuous at $a \in X$ if
+  \begin{equation*}
+    \forall \varepsilon>0, \exists \delta>0,\ \text{such that}\ d_{X}(x,a) < \delta \implies d_{Y}(f(x), f(a)) < \varepsilon.
+  \end{equation*}
+  Also, we say that $f$ is continuous on $X$ if it is continuous for all $x \in X$.
+\end{ndfn}
+
+\begin{negg}
+  For every $a \in X$, the function $f:X \to \R$ with $f(x)=d_{X}(x,a)$ is continuous.
+
+  Firstly, note that the standard metric on $\R$ is simply the absolute value function $\abs{\cdot}$. Therefore,
+  \begin{align*}
+    d(f(x), f(a)) < \varepsilon
+    &\quad\iff\quad \abs{d_{X}(x,a) - d_{X}(a,a)} < \varepsilon\\
+    &\quad\iff\quad d_{X}(x,a) < \varepsilon.
+  \end{align*}
+  So, given any $\varepsilon > 0$, let $\delta = \varepsilon > 0$. Then, $d_{X}(x,a) < \delta$ implies $d(f(x), f(a)) < \varepsilon$.
+\end{negg}
+
+Continuity of a function can also be expressed in terms of the behaviour of a convergent sequence under the given function. While this result will not be actively used later, it helps us to think about continuity as a property about bounded variation of the images of the neighbouring points in the domain. This point of view becomes tremendously useful when we begin studying topology; continuous function can have apparent jumps in their graphs.
+\begin{nlemma}
+  If $a_n \to a$ in $X$ and $f:(X, d_X) \to (Y, d_Y)$ is continuous at $a$ then $f(a_n) \to f(a) \in Y$.
+\end{nlemma}
+
+Next, we verify that the sum, product and quotient of two continuous functions is also continuous, when it is well-defined. This of course requires the co-domain to have a notion of addition, multiplication or division, respectively.
+\begin{nlemma}
+  Let $f,g:X \to \R$ be continuous. Then, the following functions are all continuous
+  \begin{enumerate}
+  \item $(f+g)(x) \coloneq f(x) + g(x)$,
+  \item $(fg)(x) \coloneq f(x)g(x)$,
+  \item $(f/g)(x) \coloneq f(x)/g(x)$, provided $g(x) \neq 0$.
+  \end{enumerate}
+\end{nlemma}
+(Note that we fixed the co-domain to be $\R$ in order to make sense of addition and multiplication.)
+
+The same result holds of the composition of two continuous functions also. We shall state and prove it later using an equivalent formulation of continuity.
+
+Before proceeding further, we explore a few examples of continuous and discontinuous functions. LONG EXAMPLE: IMAGE OF OPEN IS NOT ALWAYS OPEN.
+
+\begin{nthm}
+  A function $f:(X, d_X) \to (Y, d_Y)$ is continuous if and only if for every open set $V \subseteq Y$, $f^{-1}(V)$ is open in $X$.
+\end{nthm}
+\begin{proof}
+  Suppose that $f$ is continuous. Take any open set $V \subset Y$. If the preimage of $V$, $f^{-1}(V)$, is empty then it is open, and there is nothing to show. So, assume that $f^{-1}(V)$ is not empty. Take any $x \in f^{-1}(V) \subseteq X$. Then $f(x) \in V$.
+
+  $V$ is open, so there exists $\varepsilon > 0$ such that $\oB_{Y,\varepsilon}(f(x)) \subseteq V$. Now,
+  \begin{equation*}
+    y \in \oB_{Y,\varepsilon}(f(x)) \implies y \in V
+    \iff d_{Y}(f(x),y) < \varepsilon \implies y \in V.
+  \end{equation*}
+  As $f$ is continuous, for this $\varepsilon>0$, there exists $\delta>0$ such that $d_{X}(x,a) < \delta$ implies that $d_{Y}(f(x),f(a))<\varepsilon$. In other words,
+  \begin{equation*}
+    a \in \oB_{X,\delta}(x) \implies f(a) \in\oB_{Y,\varepsilon}(f(x)) \implies f(a) \in V.
+  \end{equation*}
+  Therefore, $\oB_{X,\delta}(x) \subseteq f^{-1}(V)$. So, $f^{-1}(V)$ is open.
+
+  For the converse, take $x \in X$ and some $\varepsilon>0$. Then, $B_{Y, \varepsilon}(f(x))$ is open in $Y$, so $f^{-1}(B_{Y, \varepsilon}(f(x)))$ is open in $X$.
+
+  Since, $x \in B_{X,\delta}(x)$, we have $B_{X,\delta}(x) \subseteq f^{-1}(B_{Y, \varepsilon}(f(x)))$ for some $\delta>0$. In other words,
+  \begin{equation*}
+    d_{X}(x,a) < \delta \implies d_{Y}(f(x), f(a)) < \varepsilon.\qedhere
+  \end{equation*}
+\end{proof}
+
+This has an immediate, and curious corollary.
+\begin{ncor}
+  Let $(X,d_s)$ be the metric space with the discrete metric, and $(Y,d)$ be any metric space. Then every function $f: X \to Y$ is continuous.
+\end{ncor}
+\begin{proof}
+  Let $f: X \to Y$ be any function. We note that since $X$ has the discrete metric, every subset of $X$ is open in $X$.
+
+  Let $U \subseteq Y$ be any open subset of $Y$. Now, either $f^{-1}(U)$ is empty. Or it is a non-empty open subset $A \subseteq X$. If $f^{-1}(U) = \emptyset$, then it is open in $X$. Moreover, if $f^{-1}(U) = A \subseteq X$, then it is also open in $X$, because every subset of $X$ is open. Therefore, $f^{-1}(U)$ is always open, showing that $f$ is continuous.
+\end{proof}
+
+In the previous theorem, we chose to express continuity in terms of open sets. However, we could have chosen to use closed sets to characterise this also.
+\begin{nlemma}
+  If $f:X \to Y$ and $A \subseteq Y$, then $f^{-1}(Y-A)=X-f^{-1}(A)$.
+\end{nlemma}
+\begin{ncor}
+  A function $f:(X, d_X) \to (Y, d_Y)$ is continuous if and only if for every closed set $V \subseteq Y$, $f^{-1}(V)$ is closed in $X$.
+\end{ncor}
+\begin{proof}
+  If $f:X \to Y$ is continuous and $F \subseteq Y$ is closed then
+  \begin{equation*}
+    X - f^{-1}(F) = f^{-1}(Y-F).
+  \end{equation*}
+  And this is open because $Y-F$ is open.
+
+  Conversely, if for every closed set $F \subseteq Y$, $f^{-1}(F)$ is closed, then taking any open subset $V \subseteq Y$ we get
+  \begin{equation*}
+    f^{-1}(Y-V)=X-f^{-1}(V),
+  \end{equation*}
+  is closed in $X$. So, $f^{-1}(V)$ is open in $X$.
+\end{proof}
+
+Now, we can easily show the continuity of the composition of two continuous functions.
+\begin{nprop}
+  Let $X, Y, Z$ be metric spaces. Let $f:X \to Y$, and $g:Y \to Z$ be continuous functions. Then, $g \circ f: X \to Z$ is also continuous.
+\end{nprop}
+\begin{proof}
+  Take $U \subseteq Z$ open. Then $g^{-1}(U) \subseteq Y$ is open. So, $f^{-1}(g^{-1}(U)) \equiv (g \circ f)^{-1}(U)$ is open in $X$.
+\end{proof}
+
+PRACTICALLY IMPORTANT: USING CTY TO SHOW THAT SETS ARE OPEN OR CLOSED.
+
+CONCEPTUALLY IMPORTANT: ABOUT TOPOLOGICALLY EQUIVALENT METRICS.
+
+Before closing this section, we define a few very important classes.
+
+An isometry is a distance-preserving map between metric spaces.
+\begin{ndfn}[Isometry]
+  An isometry between $X$ and $Y$ is a bijective function $f:X \to Y$ such that
+  \begin{equation*}
+    d_{Y}(f(x), f(y)) = d_{X}(x, y).
+  \end{equation*}
+\end{ndfn}
+If an isometry exists between $X$ and $Y$, then they are called isometric (to each other). It is an easy exercise to show that an isometry is always continuous. (This follows from the previously studied example that $x \mapsto d(x,a)$ is continuous for all $a \in X$.)
+
+Next, if we drop the relationship between the metrics, and instead require bi-continuity explicitly, then we arrive at the notion of a homeomorphism. This will play a central role in the study of topological spaces.
+\begin{ndfn}[Homeomorphism]
+  A homeomorphism between $X$ and $Y$ is a bijective function $f:X \to Y$ such that both $f$ and $f^{-1}$ are continuous.
+\end{ndfn}
+
+\begin{exercise}
+Show that
+\begin{enumerate}
+\item if $f: X \to Y$ is an isometry then it is continuous.
+\item it is possible that $f: X \to Y$ is bijective and continuous, while $f^{-1}$ fails to be continuous. (Hint: equip $X$ with the discrete metric.)
+\item every isometry is a homeomorphism.
+\item not every homeomorphism is an isometry.
+\item the constant map, and the identity map is an isometry.
+\end{enumerate}
+\end{exercise}

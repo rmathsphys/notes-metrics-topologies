@@ -1,0 +1,63 @@
+%!TEX root = ../main.tex
+\section{Connectedness}
+\begin{ndfn}[Partition]
+  Take $A, B \subseteq X$. We say that the pair $(A,B)$ is a partition of $X$ if $X = A \cup B$ and $A \cap B$.
+\end{ndfn}
+If $(A,B)$ is a partition of $X$, then we say that $A$ and $B$ partition $X$.
+
+\begin{ndfn}[Connected]
+  A topological space $X$ is called connected if the only partition of $X$ using open sets are $(X, \set{})$, $(\set{}, X)$.
+\end{ndfn}
+A topological space that is not connected, is called disconnected.
+
+\begin{remark}
+  Let $(A,B)$ be a partition of $X$. Both $A$ and $B$ are open $\iff$ both $A$ and $B$ are closed.
+\end{remark}
+
+\begin{ndfn}
+  A subset $S \subseteq X$ is connected (disconnected) if $S$ is connected (disconnected) as a topological space with the subspace topology.
+\end{ndfn}
+
+\begin{nthm}
+  The following statements are equivalent:
+  \begin{enumerate}
+  \item $X$ is disconnected.
+  \item $X$ has a partition of two non-empty open sets.
+  \item $X$ has a partition of two non-empty closed sets.
+  \item $X$ has a subset other than $\emptyset$ and $X$ that is both open and closed.
+  \item There is a continuous surjection $f: X \to \set{0,1}$, where $\set{0,1}$ has the discrete topology.
+  \end{enumerate}
+\end{nthm}
+
+In (v), the co-domain can be any set with exactly two distint elements; the choice $\set{0,1}$ is arbitrary.
+
+(v) can be used to show that $X$ is connected by showing that any continuous $f: X \to \set{0,1}$ must be constant.
+
+\begin{ndfn}
+  We say that $S \subseteq X$ is separated by open sets $U, V$ in $X$ if
+  \begin{equation*}
+    S \subseteq U \cup V,
+    \quad U \cap V \cap S = \emptyset,
+    \quad U \cap S \neq \emptyset,
+    \quad V \cap S \neq \emptyset.
+  \end{equation*}
+\end{ndfn}
+
+\begin{nprop}
+  $S \subseteq X$ is disconnected if and only if $S$ is separated by some open sets $U, V$ in $X$.
+\end{nprop}
+
+An interval in $\R$ is one of the following sets
+\begin{itemize}
+\item $\emptyset$
+\item $\set{x}$, for any $x \in \R$
+\item $[a,b] \equiv \set{x \in \R \st a \leq x \leq b}$
+\item $[a,b) \equiv \set{x \in \R \st a \leq x \leq b}$. $b=\infty$ is allowed.
+\item $(a,b] \equiv \set{x \in \R \st a \leq x \leq b}$. $a=-\infty$ is allowed.
+\item $(a,b) \equiv \set{x \in \R \st a \leq x \leq b}$. $a=-\infty$ and $b=\infty$ is allowed.
+\end{itemize}
+
+\begin{nlemma}
+  $S \subseteq \R$ is connected if an only if it is an interval.
+\end{nlemma}
+This suggests that an interval can simply be defined as a connected subset of $\R$.

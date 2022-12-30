@@ -1,0 +1,244 @@
+%!TEX root = ../main.tex
+\section{Topological Spaces}
+\begin{ndfn}
+  A topology on a set $X$ is a set $T \subseteq \mathcal{P}(X)$ of subsets of $X$, such that
+  \begin{enumerate}
+  \item[(T1)] $\emptyset, X \in T$
+  \item[(T2)] The union of every arbitrary collection of elements of $T$, is an element of $T$.
+  \item[(T3)] The intersection of every finite collection of elements of $T$, is an element of $T$.
+  \end{enumerate}
+  The pair $(X,T)$ is called a topological space. The elements of $T$ are called open sets.
+\end{ndfn}
+
+These axioms are chosen such that the elements of $T$ (these are the distinguished subsets of $X$) closely resemble the open sets in metric spaces. However, note that $T$ is not required to be constructed out of a metric space. This idea (and the unfortunate clash of terminology) takes some time to get used to. We shall aim to clarify several associated misconceptions with the help of examples below.
+
+\begin{remark}
+  When it is clear from the context, we directly call $X$ the topological space, without explicitly specifying $T$.
+\end{remark}
+
+\begin{remark}
+  There is no notion of an open/closed ball in a general topological space; because this relies on the metric. Hence, the `topological' open sets and `metric-based' open sets have very different origins. The axioms (T1)--(T3) simply try to ensure that the `topological' open sets try to match the behaviour of the `metric-based' open sets as much as possible.
+\end{remark}
+
+The concept of a closed set can be easily re-defined in the topological setting. The following definition ensure that the `topological' closed sets behave in the same way as the closed sets encountered in metric spaces.
+\begin{ndfn}[Closed sets]
+  A subset $F$ of $X$ is called closed in $(X,T)$ if its complement $X-F$ is in $T$.
+\end{ndfn}
+
+\begin{negg}[Indiscrete topology]
+  Let $X$ be any set. Take $T = \set{\emptyset, X}$. Then, the axioms (T1), (T2), and (T3) are trivially fulfilled. Therefore, $(X,T)$ forms a topological space. Such a choice of $T$ is called the indiscrete topology on $X$.
+\end{negg}
+
+\begin{negg}[Discrete topology]
+  Let $X$ be any set. Take $T = P(X)$. The pair $(X,T)$ forms a topological space, and $T$ is called the discrete topology on $X$. It is easy to check that the axioms (T1)--(T3) are satisfied.
+\end{negg}
+
+\begin{negg}[Metric topology]
+  Let $(X,d)$ be a metric space, and $T = \set{U \subseteq X \st U\ \text{open in}\ X\ \text{w.r.t.}\ d}$. Then, $(X,T)$ is a topological space. We say that $T$ is the topology induced by the metric $d$ (or simply the metric topology). Again, $\emptyset$ and $X$ are both open in any metric space, so they are in $T$. Also, we saw earlier that arbitrary union of open sets are also open, and hence elements of $T$. Likewise, finite intersection of open sets is again open, and consequently lies within $T$. This confirms that (T1), (T2) and (T3) are satisfied.
+\end{negg}
+
+\begin{ndfn}[Metrizable]
+  A topological space $(X,T)$ is called metrizable if there exists a metric $d$ on $X$, such that the set of open sets of $X$ with respect to the metric $d$ coincides with the collection of subsets $T$. If no such metric exists then the topological spaces is called non-metrizable.
+\end{ndfn}
+
+\begin{nprop}
+  Topological spaces with the discrete topology are metrizable.
+\end{nprop}
+
+\begin{nprop}
+  Topological spaces with the indiscrete topology are non-metrizable.
+\end{nprop}
+
+\begin{ndfn}
+  Let $X$ be a set, and let $T_1$ and $T_2$ be two topologies on $X$. If $T_1 \subsetneqq T_2$ then we say that $T_1$ is coarser than $T_2$, and $T_2$ is finer than $T_1$. Otherwise, the two topologies are called not-comparable.
+\end{ndfn}
+
+ALTERNATIVE DEFINITION OF TOPOLOGY IN TERMS OF CLOSED SETS.
+
+MORE EXAMPLES.
+
+\subsection{Basis and sub-basis of topological spaces}
+
+\subsection{Subspace and product topologies}
+\begin{ndfn}[Subspace topology]
+  Let $(X,T)$ be a topological space, and let $S \subseteq X$ be a non-empty subset of $X$. The subspace topology on $S$ is the collection
+  \begin{equation*}
+    T_S = \set{U \cap S \st U \text{ open in } X}
+  \end{equation*}
+  of subsets of $S$.
+\end{ndfn}
+
+EXAMPLES.
+
+\begin{ndfn}[Product topology]
+  Let $(X,T_X)$ and $(Y,T_Y)$ be topological spaces. The product topology on $X \times Y$ is the topology $T$ with basis
+  \begin{equation*}
+    B = \set{U_1 \times U_2 \st U_1 \in T_X, U_2 \in T_Y}.
+  \end{equation*}
+  When $(X \times Y, T)$ is called the topological product of $X$ and $Y$.
+\end{ndfn}
+This can be extended to any finite product of topological spaces.
+
+\begin{remark}
+  One needs to check that the collection $B$ given in the previous definition indeed fulfils the conditions of being a topological basis.
+\end{remark}
+
+The product topology is consistent with the definition of metrics on a product space that we defined earlier.
+
+DIAGRAM
+
+\begin{nthm}
+  Let $(X,d_X)$ and $(Y,d_Y)$ be two metric spaces. Let $T_X$ and $T_Y$ be topologies on $X$ and $Y$, respectively. Then, for every $1 \leq p \leq \infty$, the topology induced by the (product) metric $\rho_p$ on $X \times Y$ coincides with the product topology $T$ on $X \times Y$.
+\end{nthm}
+\begin{proof}
+  TBC.
+\end{proof}
+
+In particular, this proves that elements of the product topology are not all of the form $U_1 \times U_2$ for $U_i \in T_i$. (EXAMPLE?)
+
+EXAMPLES.
+
+\subsection{Closure, interior and boundary}
+\begin{ndfn}
+  Let $X$ be a topological space. The (open) neighbourhood of $x \in X$ is an open set $U$ such that $x \in U$.
+\end{ndfn}
+Some authors distinguish between a neighbourhood and an open neighbourhood. We shall always require the neighbourhood to be open.
+
+\begin{ndfn}
+  The closure $\closure{A}$ of a set $A \subset X$ is the intersection of all the closed sets of $X$ that contain A.
+\end{ndfn}
+
+\begin{negg}
+  Let $X=\R$. Then, $\closure{(a,b)} = [a,b]$
+\end{negg}
+
+Note that if $A$ is empty then it is contained within the set $\emptyset$ that is closed. So, $\closure{A} = \emptyset$. Moreover, if $A$ is non-empty, then $\closure{A}$ is a (possibly arbitrary) intersection of closed sets, and hence it is closed.
+
+\begin{exercise}
+Show that
+\begin{enumerate}
+\item $A$ is closed $\iff A = \closure{A}$.
+\item $\closure{\closure{A}} = \closure{A}$.
+\item $H \subset K \implies \closure{H} \subset \closure{K}$.
+\item $\closure{H \cup K} = \closure{H} \cup \closure{K}$.
+\end{enumerate}
+\end{exercise}
+
+\begin{nlemma}
+  Take $A \subset X$. Then,
+  \begin{align*}
+    \closure{A} &= \set{x \in X \st U \cap A \neq \emptyset \text{ for every open neighbourhood } U \text{ of } x}\\
+    &= \set{x \in X \st \text{ every open neighbourhood of } x \text{ intersects } A}\\
+  \end{align*}
+\end{nlemma}
+\begin{proof}
+  TBC.
+\end{proof}
+
+\begin{ncor}
+  In $\R$, we get that $\closure{\Q} = \closure{\R-\Q} = \R$
+\end{ncor}
+\begin{proof}
+  TBC.
+\end{proof}
+
+CHARACTERISATION OF THE CLOSURE IN METRIC SPACES
+
+\begin{ndfn}
+  The interior $\interior{A}$ of $A \subset X$ is the union of all the open sets of $X$ contained within $A$
+\end{ndfn}
+
+\begin{exercise}
+Show that
+\begin{enumerate}
+\item $A$ is open $\iff A = \interior{A}$.
+\item $\interior{(\interior{A})} = \interior{A}$.
+\item $H \subset K \implies \interior{H} \subset \interior{K}$.
+\item $\interior{(H \cup K)} = \interior{H} \cup \interior{K}$.
+\end{enumerate}
+\end{exercise}
+
+
+LIMIT POINTS AND ISOLATED POINTS.
+
+LARGE AND SMALL SUBSETS. DENSE, NOWHERE DENSE, MEAGRE.
+
+EXAMPLE: CANTOR SET.
+
+\subsection{Separability and the Hausdorff property}
+One way to show that a topology is not metrizable is to find a property that every metrizable topological space must have, and show that it fails. The Hausdorff property is one such property.
+
+Before we state the Hausdorff property, let us examine the behaviour of sequences in general topological spaces. Using the open set based criteria for convergence that was studied in the context of metric spaces, we can define convergence of sequences in topological spaces.
+\begin{ndfn}
+  A sequence $(a_n)$ in a topological spaces $X$ converges to a limit $a \in X$ if and only if for every open neighbourhood $U$ of $a$, there exists an $N \in \N$ such that $a_n \in U$, for all $n \geq N$.
+\end{ndfn}
+This `reasonable' definition has some undesirable consequences.
+
+For illustration, consider any set $X$ with the indiscrete topology --- assume that $X$ has more than one element. Then every sequence $(a_n) \in X$ converges to every point in $X$. That is for every $x \in X$, the only open neighbourhood is $X$ itself, but $(a_n)$ is trivially within $X$ for all $n \geq 1$. Hence, $(a_n)$ converges to $x$.
+
+In other words, a convergent sequence might not have a unique limit. The issue is that (unlike in a metric space) we cannot always separate two different points using open sets, in a general topological space. The topological spaces where such a separation is possible are called Hausdroff (topological) spaces.
+\begin{ndfn}
+  A topological space $X$ is called Hausdorff if for every $a, b \in X$ with $a \neq b$, there exist open sets $U$ and $V$ such that $a \in U$, $b \in V$, and $U \cap V = \emptyset$.
+\end{ndfn}
+
+\begin{nlemma}
+  Every metrizable topological space is Hausdorff.
+\end{nlemma}
+\begin{proof}
+  Suppose $X$ is metrizable, with the metric $d$. Take $a, b \in X$ with $a \neq b$. Set $\varepsilon = d(a,b) > 0$. Then,
+  \begin{equation*}
+    a \in \oB_{\varepsilon/2}(a),
+    \qquad
+    b \in \oB_{\varepsilon/2}(b),
+    \qquad
+    \oB_{\varepsilon/2}(a) \bigcap \oB_{\varepsilon/2}(b) = \emptyset.
+  \end{equation*}
+  Therefore, $X$ is Hausdorff.
+\end{proof}
+
+EXAMPLES: INDISCRETE. ZARISKI.
+
+\begin{nlemma}
+  In a Hausdorff space $X$ every convergent sequence has a unique limit.
+\end{nlemma}
+\begin{proof}
+  Let $(a_n)$ be a convergent sequence in $X$ with a limit $a \in X$. Then, for every $b \in X$ such that $b \neq a$, we can find neighbourhoods $U$, $V$ of $a$ and $b$, respectively, such that $U \cap V = \emptyset$. Now, by definition of convergence to $a$, there exists $N \in \N$ such that $a_n \in U$ for $n \geq N$. Thus, there is no $N' \in \N$ such that $a_n \in V$ for $n \geq N'$. This shows that $b$ cannot be a limit of $(a_n)$.
+\end{proof}
+Note: there are some non-Hausdorff topologies in which convergent sequences have a unique limit.
+
+The topological spaces with the Hausdorff property allow their elements to be separated from each other by disjoint open neighbourhoods. This additional criteria is only one of the several different `separation conditions' that one might need, depending on the context. These criteria are often called Tychonoff separation axioms (or simply separation axioms). The Kolmogorov classification of topological separability is given below.
+\begin{ndfn}[$T_{0}$ spaces]
+  A topological space $X$ is called $T_0$ or Kolmogorov, if $\forall a, b \in X$ with $a \neq b$, there exists $U$ open in $X$ such that either $a \in U$ and $b \notin U$ or $a \notin U$ and $b \in U$. Such points are called topologically distinguishable.
+\end{ndfn}
+
+\begin{ndfn}[$T_{1}$ spaces]
+  A topological space $X$ is called $T_1$ or Frechet or accessible, if $\forall a \in X$, $\set{a}$ is a closed set in $X$.
+\end{ndfn}
+
+\begin{ndfn}[$T_{2}$ spaces]
+  A topological space $X$ is called $T_2$ or Hausdorff or separated, if $\forall a, b \in X$ with $a \neq b$, there exists $U, V$ open in $X$ such that $a \in U$ and $b \in V$ and $U \cap V = \emptyset$. We say that $a$ and $b$ are separated by open sets.
+\end{ndfn}
+and so on.
+
+\begin{nlemma}
+  Every $T_2$ space is also $T_1$. And every $T_1$ space is also $T_0$.
+\end{nlemma}
+
+\subsection{Maps between topological spaces and continuity}
+% \begin{nprop}
+%   Let $f: X \to Y$ be continuous, and let $A \subseteq X$ be non-empty. Then, the restriction of $f$ to $A$, $f|_{A} : A \to Y$ is also continuous. (Here, $A$ inherits the metric from $X$.)
+% \end{nprop}
+% \begin{proof}
+%   Let $U \subseteq A$ be open in $A$. Then $f|_{A}^{-1}(U) = f^{-1}(U) \cap A$. But, $f^{-1}(U)$ is open in $X$. So, $f^{-1}(U) \cap A$ is open in $A$. In other words, $f|_{A}^{-1}(U)$ is open in $A$, and $f|_{A}$ is continuous.
+% \end{proof}
+% TO BE DEVELOPED: PROJECTION MAPS ARE CTS. CTS MAP INTO A PRODUCT SPACE. THIS REQUIRES THE INTRODUCTION OF PRODUCT METRIC.
+
+
+\subsection{Topological invariance}
+\begin{ndfn}[Topological invariants]
+  A property of topological spaces that is preserved by homeomorphisms is called a topological invariant.
+\end{ndfn}
+
+Examples of topological invariants include: finiteness, Hausdorff property, metrisability, compactness, connectedness.
+
+Some properties that are not topological invariants: boundedness, completeness.
