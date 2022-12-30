@@ -26,15 +26,19 @@ The concept of a closed set can be easily re-defined in the topological setting.
 \end{ndfn}
 
 \begin{negg}[Indiscrete topology]
-  Let $X$ be any set. Take $T = \set{\emptyset, X}$. Then, the axioms (T1), (T2), and (T3) are trivially fulfilled. Therefore, $(X,T)$ forms a topological space. Such a choice of $T$ is called the indiscrete topology on $X$.
+  Let $X$ be any set. Take $T = \set{\emptyset, X}$. Then, the axioms (T1), (T2), and (T3) are trivially fulfilled. Therefore, $(X,T)$ forms a topological space. Such a choice of $T$ is called the indiscrete topology on $X$.\eggqed
 \end{negg}
 
 \begin{negg}[Discrete topology]
-  Let $X$ be any set. Take $T = P(X)$. The pair $(X,T)$ forms a topological space, and $T$ is called the discrete topology on $X$. It is easy to check that the axioms (T1)--(T3) are satisfied.
+  Let $X$ be any set. Take $T = P(X)$. The pair $(X,T)$ forms a topological space, and $T$ is called the discrete topology on $X$. It is easy to check that the axioms (T1)--(T3) are satisfied.\eggqed
 \end{negg}
 
 \begin{negg}[Metric topology]
-  Let $(X,d)$ be a metric space, and $T = \set{U \subseteq X \st U\ \text{open in}\ X\ \text{w.r.t.}\ d}$. Then, $(X,T)$ is a topological space. We say that $T$ is the topology induced by the metric $d$ (or simply the metric topology). Again, $\emptyset$ and $X$ are both open in any metric space, so they are in $T$. Also, we saw earlier that arbitrary union of open sets are also open, and hence elements of $T$. Likewise, finite intersection of open sets is again open, and consequently lies within $T$. This confirms that (T1), (T2) and (T3) are satisfied.
+  Let $(X,d)$ be a metric space, and consider
+  \begin{equation*}
+    T = \set{U \subseteq X \st U\ \text{open in}\ X\ \text{w.r.t.}\ d}.
+  \end{equation*}
+  Then, $(X,T)$ is a topological space. We say that $T$ is the topology induced by the metric $d$ (or simply the metric topology). Again, $\emptyset$ and $X$ are both open in any metric space, so they are in $T$. Also, we saw earlier that arbitrary union of open sets are also open, and hence elements of $T$. Likewise, finite intersection of open sets is again open, and consequently lies within $T$. This confirms that (T1), (T2) and (T3) are satisfied.\eggqed
 \end{negg}
 
 \begin{ndfn}[Metrizable]
@@ -58,6 +62,46 @@ ALTERNATIVE DEFINITION OF TOPOLOGY IN TERMS OF CLOSED SETS.
 MORE EXAMPLES.
 
 \subsection{Basis and sub-basis of topological spaces}
+\begin{ndfn}
+  Let $(X,T)$ be a topological space. A subset $B \subseteq T$ is called a basis if every open set $U \in T$ can be written as a union of elements of $B$.
+\end{ndfn}
+
+\begin{negg}
+  Open balls provide a basis for the metric topology.
+\end{negg}
+
+\begin{negg}
+  A basis for $\R$ is $\set{(a,b) \st a<b \quad\text{and}\quad a,b\in\R}$.
+\end{negg}
+
+\begin{nlemma}
+  Let $\mathcal{B}$ be a basis of $X$. Then,
+  \begin{enumerate}
+  \item[B1] $X$ is a union of sets from $\mathcal{B}$.
+  \item[B2] For every $B_1, B_2 \in \mathcal{B}$, $B_1 \cap B_2$ is a union of sets from $\mathcal{B}$.
+  \end{enumerate}
+\end{nlemma}
+
+\begin{nlemma}
+  Let $\mathcal{D} \subseteq P(X)$ be a collection of subsets of $X$ that satisfies (B1) and (B2). Then, there exists a unique topology $T$ on $X$, whose basis is $\mathcal{D}$.
+\end{nlemma}
+$T$ is the coarsest topology containing $\mathcal{D}$.
+
+\begin{ndfn}
+  SUB-BASIS.
+\end{ndfn}
+
+\begin{nprop}
+  Every basis is a sub-basis.
+\end{nprop}
+
+\begin{negg}
+  $\set{(a,\infty), (-\infty,b) \st a,b \in \R}$ is a sub-basis on $\R$.
+\end{negg}
+
+\begin{nprop}
+  UNIQUE TOPOLOGY FROM A SUB-BASIS.
+\end{nprop}
 
 \subsection{Subspace and product topologies}
 \begin{ndfn}[Subspace topology]
@@ -67,6 +111,8 @@ MORE EXAMPLES.
   \end{equation*}
   of subsets of $S$.
 \end{ndfn}
+
+DIAGRAM.
 
 EXAMPLES.
 
@@ -99,12 +145,12 @@ In particular, this proves that elements of the product topology are not all of 
 EXAMPLES.
 
 \subsection{Closure, interior and boundary}
-\begin{ndfn}
-  Let $X$ be a topological space. The (open) neighbourhood of $x \in X$ is an open set $U$ such that $x \in U$.
+\begin{ndfn}[Neighbourhood]
+  Let $X$ be a topological space. The open neighbourhood of $x \in X$ is an open set $U$ such that $x \in U$.
 \end{ndfn}
 Some authors distinguish between a neighbourhood and an open neighbourhood. We shall always require the neighbourhood to be open.
 
-\begin{ndfn}
+\begin{ndfn}[Closure]
   The closure $\closure{A}$ of a set $A \subset X$ is the intersection of all the closed sets of $X$ that contain A.
 \end{ndfn}
 
@@ -144,7 +190,7 @@ Show that
 
 CHARACTERISATION OF THE CLOSURE IN METRIC SPACES
 
-\begin{ndfn}
+\begin{ndfn}[Interior]
   The interior $\interior{A}$ of $A \subset X$ is the union of all the open sets of $X$ contained within $A$
 \end{ndfn}
 
@@ -158,12 +204,11 @@ Show that
 \end{enumerate}
 \end{exercise}
 
+BOUNDARY.
 
 LIMIT POINTS AND ISOLATED POINTS.
 
 LARGE AND SMALL SUBSETS. DENSE, NOWHERE DENSE, MEAGRE.
-
-EXAMPLE: CANTOR SET.
 
 \subsection{Separability and the Hausdorff property}
 One way to show that a topology is not metrizable is to find a property that every metrizable topological space must have, and show that it fails. The Hausdorff property is one such property.
@@ -225,6 +270,41 @@ and so on.
 \end{nlemma}
 
 \subsection{Maps between topological spaces and continuity}
+We begin by stating the definition of continuity in a topological setting.
+\begin{ndfn}
+  A function $f : X \to Y$ is continuous if the pre-image, $f^{-1}(V)$, of every open set, $V$, in $Y$, is open in $X$. (Equivalently, if the pre-image of every closed set in $Y$, is closed in $X$.)
+\end{ndfn}
+
+\begin{negg}
+  The following examples highlight some key points regarding continuity of functions between topological spaces.
+  \begin{enumerate}
+  \item Constant map.
+  \item Identity map.
+  \item Continuity in a metric space implies continuity in the metric-induced topological space.
+  \item When the domain has the discrete topology.
+  \item When the domain has the indiscrete topology.
+  \end{enumerate}
+\end{negg}
+
+To check continuity of $f$, it is sufficient to check it for a sub-basis. Also, note that every basis is also a sub-basis. More precisely,
+\begin{nlemma}
+  Let $X$ and $Y$ be topological spaces, and let $\mathcal{B}$ be a sub-basis for $Y$. The function $f: X \to Y$ is continuous if and only if for every $B \in \mathcal{B}$, $f^{-1}(B)$ is open in $X$.
+\end{nlemma}
+
+\subsection{Algebra of continuity}
+Composition of maps.
+
+Projection map.
+
+Component-wise continuity.
+
+Examples.
+
+\subsection{Homeomorphisms}
+Definition.
+
+Homeomorphic spaces. Notation and example.
+
 % \begin{nprop}
 %   Let $f: X \to Y$ be continuous, and let $A \subseteq X$ be non-empty. Then, the restriction of $f$ to $A$, $f|_{A} : A \to Y$ is also continuous. (Here, $A$ inherits the metric from $X$.)
 % \end{nprop}

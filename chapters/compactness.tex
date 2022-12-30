@@ -3,7 +3,7 @@
 \begin{ndfn}[Open cover]
   An open cover of $(X,T)$ is a collection of open sets $\cover{U} \subseteq T$, whose union contains $X$. That is
   \begin{equation*}
-    X \subseteq \bigcup_{U \in \cover{U}} U.
+    X \subseteq \bigcup_{U \in\,\cover{U}} U.
   \end{equation*}
 \end{ndfn}
 
@@ -12,21 +12,29 @@
   \begin{equation*}
     \cover{U}' \subseteq \cover{U}
     \qquad\text{and}\qquad
-    X \subseteq \bigcup_{U \in \cover{U}'} U.
+    X \subseteq \bigcup_{U \in\,\cover{U}'} U.
   \end{equation*}
 \end{ndfn}
 
 \begin{negg}
-  Examples.
+  \phantom{}
+  \begin{itemize}
+  \item $\set{(n,n+3) \st n \in \Z}$ is an open cover of $\R$. $\set{(2k, 2k+3) \st k \in \Z}$ is a subcover.
+  \item $\set{(n,n+1) \st n \in \Z}$ is not an open cover of $\R$, because it is missing all the integers.
+  \item $\set{(a-1,a+1) \st a \in \R}$ is a cover of $\R$, with a subcover $\set{(a-1, a+1) \st a \in \Z}$. However, $\set{(a-\frac{1}{2}, a+\frac{1}{2}) \st a \in \R}$ is not a subcover; it covers $\R$ but it is not a subset of the original cover.
+  \end{itemize}
 \end{negg}
-
 
 \begin{ndfn}[Compact]
   A topological spaces $X$ is called compact if every open cover of $X$ has a finite subcover.
 \end{ndfn}
 
 \begin{negg}
-  Examples.
+  It is typically easier to show that a given space is \emph{not} compact, because one needs to find a single open cover without a finite subcover.
+  \begin{itemize}
+  \item $(0,1)$ is not compact. The collection $\set{(0,a) \st a \in (0,1)}$ is an open cover of $(0,1)$ without any finite subcover.
+  \item $\R$ is not compact. The open cover $\set{(-\infty, a) \st a \in \Z}$ has no finite subcover.
+  \end{itemize}
 \end{negg}
 
 \begin{ndfn}
@@ -53,10 +61,7 @@
 \end{nthm}
 
 \begin{nthm}[Heine-Borel]
-  Consider $\R$ with the standard topology, and let $K \subseteq \R$ be any subset. Then,
-  \begin{equation*}
-    K\ \text{compact} \iff K\ \text{closed and bounded}.
-  \end{equation*}
+  Consider $\R$ with the standard topology, and let $K \subseteq \R$ be any subset. Then, $K$ is compact if and only if $K$ is closed and bounded.
 \end{nthm}
 This remain true when $\R$ is replace with $\R^n$. This result is not true in a general metric-induced topological space.
 
