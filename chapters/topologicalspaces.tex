@@ -59,7 +59,25 @@ The concept of a closed set can be easily re-defined in the topological setting.
 
 ALTERNATIVE DEFINITION OF TOPOLOGY IN TERMS OF CLOSED SETS.
 
-MORE EXAMPLES.
+\begin{negg}[Zariski topology]
+  Let $X$ be any non-empty set. The Zariski topology on $X$ is the topology $T$ with open sets $\emptyset$, $X$, and every subset of $X$ whose complement is finite. That is
+  \begin{equation*}
+    T = \set{\emptyset, X} \cup \set{A \subseteq X \st X-A\ \text{is finite}}.
+  \end{equation*}
+
+  This topology can more easily described in terms of its closed sets: it is the topology where all the finite subsets of $X$ are closed, in addition to the $\emptyset$ and $X$ itself.
+
+  Zariski topology plays an important role in algebraic geometry.\eggqed
+\end{negg}
+
+\begin{negg}[Co-countable topology]
+  Let $X$ be any non-empty set. The co-countable topology on $X$ is the topology $T$ with open sets $\emptyset$, $X$, and every subset of $X$ whose complement is at most countably infinite. That is
+  \begin{equation*}
+    T = \set{\emptyset, X} \cup \set{A \subseteq X \st X-A\ \text{is finite or countably infinite}}.
+  \end{equation*}
+
+  Similar to the Zariski topology, it is easier to describe the closed sets of the co-countable topology: in addition to the $\emptyset$ and $X$, all the subsets of $X$ that are finite or countably infinite are closed.
+\end{negg}
 
 \subsection{Basis and sub-basis of topological spaces}
 \begin{ndfn}
@@ -85,7 +103,23 @@ MORE EXAMPLES.
 \begin{nlemma}
   Let $\mathcal{D} \subseteq P(X)$ be a collection of subsets of $X$ that satisfies (B1) and (B2). Then, there exists a unique topology $T$ on $X$, whose basis is $\mathcal{D}$.
 \end{nlemma}
-$T$ is the coarsest topology containing $\mathcal{D}$.
+\begin{proof}
+  If such a topology exists then definition its elements can be expressed as the unions of the elements of $\mathcal{D}$. So, construct
+  \begin{equation*}
+    T = \set{\text{all the various unions of elements of } \mathcal{D}}.
+  \end{equation*}
+  We need to show that $T$ is indeed a topology; if it is then $\mathcal{D}$ is its basis by construction. We check (T1), (T2) and (T3). (T1) is satisfied because $\emptyset, X \in T$ due to property (B1).
+
+  Next, take any arbitrary union of elements of $T$. This is an arbitrary union of union of elements of $\mathcal{D}$. Hence, it is a union of elements of $\mathcal{D}$. This establishes (T2).
+
+  Finally, take any $U, V \in T$. Then, $U = \bigcup_{i\in I} C_i$ and $V = \bigcup_{j \in J} D_j$ for some $C,i, D_j \in \mathcal{D}$. So,
+  \begin{equation*}
+    U \cap V = \left(\bigcup_{i\in I} C_i\right) \cap \left(\bigcup_{j \in J} D_j\right)
+    = \bigcup_{i,j} \left(C_j \cap D_j\right) \in T,
+  \end{equation*}
+  since $C_j \cap D_j \in \mathcal{D}$ by property (B2). This can be extended to any finite number of intersections. Consequently, (T3) is also satisfied.
+\end{proof}
+The topology, $T$, generated this way is the coarsest topology containing $\mathcal{D}$.
 
 \begin{ndfn}
   SUB-BASIS.
