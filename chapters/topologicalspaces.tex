@@ -121,8 +121,8 @@ ALTERNATIVE DEFINITION OF TOPOLOGY IN TERMS OF CLOSED SETS.
 \end{proof}
 The topology, $T$, generated this way is the coarsest topology containing $\mathcal{D}$.
 
-\begin{ndfn}
-  SUB-BASIS.
+\begin{ndfn}[Sub-basis]
+  Let $(X,T)$ be a topological space. A collection $\mathcal{B}' \subseteq T$ is called a sub-basis for the topology $T$ if every open set $U$ of $X$ can be written as a union of finite intersections of sets from $\mathcal{B}'$.
 \end{ndfn}
 
 \begin{nprop}
@@ -134,19 +134,52 @@ The topology, $T$, generated this way is the coarsest topology containing $\math
 \end{negg}
 
 \begin{nprop}
-  UNIQUE TOPOLOGY FROM A SUB-BASIS.
+  If $\mathcal{D}'$ is any collection of subsets of a set $X$ whose union is $X$ then there is a unique topology $T$ on $X$ with $\mathcal{B}'$ as its sub-basis.
 \end{nprop}
+\begin{proof}
+  If $\mathcal{D}'$ is a sub-basis for $X$, then any topology has $\mathcal{D}$, the collection of all finite intersections of elements of $\mathcal{D}'$, as a basis. But, $\mathcal{D}$ satisfies (B1) and (B2). So, there is a unique topology $T$ with the basis $\mathcal{D}$. This is also the unique topology with the sub-basis $\mathcal{D}'$.
+\end{proof}
 
 \subsection{Subspace and product topologies}
 \begin{ndfn}[Subspace topology]
-  Let $(X,T)$ be a topological space, and let $S \subseteq X$ be a non-empty subset of $X$. The subspace topology on $S$ is the collection
-  \begin{equation*}
-    T_S = \set{U \cap S \st U \text{ open in } X}
-  \end{equation*}
-  of subsets of $S$.
+  Let $(X,T)$ be a topological space. The subspace topology on $S \subseteq X$ is the collection $T_S = \set{U \cap S \st U \text{ open in } X}$ of subsets of $S$.
 \end{ndfn}
 
 DIAGRAM.
+
+\begin{nthm}
+  Let $(X,d)$ be a metric space, and let $T$ be the metric-induced topology on $X$. Take $S \subseteq X$. Then, the subspace topology $T_S$ on $S$, is the same as the topology due to the restricted metric $d|_S$ on $S$.
+\end{nthm}
+\begin{proof}
+  We need to show that the collection of open sets with respect to the metric $d|_S$, is the same as the collection $T_S$.
+
+  Take any $V \in T_S$. Then, $V = U \cap S$ for some $U$ open in $X$. Fix $a \in V$. Then, $a \in U$ and $a \in S$. Now, $U$ is open in $(X,d)$, so, there exists $\varepsilon > 0$ such that $\oB_{\varepsilon}^{X}(a) \subseteq U$. And,
+  \begin{equation*}
+    \oB_{\varepsilon}^{X}(a) \subseteq U
+    \implies
+    \oB_{\varepsilon}^{X}(a) \cap S \subseteq U \cap S.
+  \end{equation*}
+  However,
+  \begin{equation*}
+    \oB_{\varepsilon}^{X}(a) \cap S
+    = \set{t \in S \st d(a,t)<\varepsilon}
+    = \set{t \in S \st d_{S}(a,t)<\varepsilon}
+    = \oB_{\varepsilon}^{S}(a).
+  \end{equation*}
+  Therefore,
+  \begin{equation*}
+    \oB_{\varepsilon}^{S}(a) = \oB_{\varepsilon}^{X}(a) \cap S \subseteq U \cap S = V,
+  \end{equation*}
+  which shows that $V$ is open in $(S, d|_S)$.
+
+  Conversely, suppose $V$ is open in $(S, d|_S)$. Then, for all $a \in V$, there exists $\varepsilon(a) > 0$ such that $\oB_{\varepsilon(a)}^{S}(a) \subseteq V$. Moreover,
+  \begin{equation*}
+    \oB_{\varepsilon(a)}^{S}(a) = \oB_{\varepsilon(a)}^{X}(a) \cap S \implies
+    V = \bigcup_{a \in V} \oB_{\varepsilon(a)}^{S}(a)
+    = \left[\bigcup_{a \in V} \oB_{\varepsilon(a)}^{X}(a)\right] \cap S = U \cap S,
+  \end{equation*}
+  for some $U$ open in $X$. Therefore, $V \in T_S$ because it is of the form $U \cap S$.
+\end{proof}
 
 EXAMPLES.
 
