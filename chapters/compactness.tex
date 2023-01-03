@@ -1,5 +1,6 @@
 %!TEX root = ../main.tex
 \section{Compactness}
+\subsection{Preliminary definitions}
 \begin{ndfn}[Open cover]
   An open cover of $(X,T)$ is a collection of open sets $\cover{U} \subseteq T$, whose union contains $X$. That is
   \begin{equation*}
@@ -48,6 +49,7 @@
   TBC.
 \end{proof}
 
+\subsection{Results on compact spaces}
 \begin{nthm}
   Every closed interval $[a,b] \subseteq \R$ is compact.
 \end{nthm}
@@ -66,11 +68,16 @@
 This remain true when $\R$ is replace with $\R^n$. This result is not true in a general metric-induced topological space.
 
 \begin{nthm}
-  Let $X$, $Y$ be compact topological spaces, then $X \times Y$ is compact (with the product topology).
+  Let $X$ be a metric-induced topological space. If $X$ is compact then it is complete.
+\end{nthm}
+
+\begin{nthm}
+  Let $X$, $Y$ be compact topological spaces, then $X \times Y$ is compact.
 \end{nthm}
 
 A generalisation of this result (known as Tychonov's theorem) states that the topological product of an arbitrary number of compact spaces also remains compact in the product topology.
 
+\subsection{Functions on compact spaces}
 \begin{nthm}
   Let $f: X \to Y$ be a continuous map. If $K \subseteq X$ is compact then $f(K)$ is also compact.
 \end{nthm}

@@ -1,5 +1,7 @@
 %!TEX root = ../main.tex
 \section{Topological Spaces}
+
+\subsection{Preliminary definitions}
 \begin{ndfn}
   A topology on a set $X$ is a set $T \subseteq \mathcal{P}(X)$ of subsets of $X$, such that
   \begin{enumerate}
@@ -10,7 +12,7 @@
   The pair $(X,T)$ is called a topological space. The elements of $T$ are called open sets.
 \end{ndfn}
 
-These axioms are chosen such that the elements of $T$ (these are the distinguished subsets of $X$) closely resemble the open sets in metric spaces. However, note that $T$ is not required to be constructed out of a metric space. This idea (and the unfortunate clash of terminology) takes some time to get used to. We shall aim to clarify several associated misconceptions with the help of examples below.
+These axioms are chosen such that the elements of $T$ (these are the distinguished subsets of $X$) closely resemble the open sets in metric spaces. However, note that $T$ is not required to be constructed out of a metric space. This idea (and the unfortunate clash of terminology) takes some time to get used to.
 
 \begin{remark}
   When it is clear from the context, we directly call $X$ the topological space, without explicitly specifying $T$.
@@ -25,6 +27,7 @@ The concept of a closed set can be easily re-defined in the topological setting.
   A subset $F$ of $X$ is called closed in $(X,T)$ if its complement $X-F$ is in $T$.
 \end{ndfn}
 
+We shall aim to clarify several associated misconceptions with the help of examples below.
 \begin{negg}[Indiscrete topology]
   Let $X$ be any set. Take $T = \set{\emptyset, X}$. Then, the axioms (T1), (T2), and (T3) are trivially fulfilled. Therefore, $(X,T)$ forms a topological space. Such a choice of $T$ is called the indiscrete topology on $X$.\eggqed
 \end{negg}
@@ -76,7 +79,7 @@ ALTERNATIVE DEFINITION OF TOPOLOGY IN TERMS OF CLOSED SETS.
     T = \set{\emptyset, X} \cup \set{A \subseteq X \st X-A\ \text{is finite or countably infinite}}.
   \end{equation*}
 
-  Similar to the Zariski topology, it is easier to describe the closed sets of the co-countable topology: in addition to the $\emptyset$ and $X$, all the subsets of $X$ that are finite or countably infinite are closed.
+  Similar to the Zariski topology, it is easier to describe the closed sets of the co-countable topology: in addition to the $\emptyset$ and $X$, all the subsets of $X$ that are finite or countably infinite are closed.\eggqed
 \end{negg}
 
 \subsection{Basis and sub-basis of topological spaces}
@@ -85,7 +88,7 @@ ALTERNATIVE DEFINITION OF TOPOLOGY IN TERMS OF CLOSED SETS.
 \end{ndfn}
 
 \begin{negg}
-  Open balls provide a basis for the metric topology.
+  Open balls provide a basis for the metric topology.\eggqed
 \end{negg}
 
 \begin{negg}
@@ -130,7 +133,7 @@ The topology, $T$, generated this way is the coarsest topology containing $\math
 \end{nprop}
 
 \begin{negg}
-  $\set{(a,\infty), (-\infty,b) \st a,b \in \R}$ is a sub-basis on $\R$.
+  $\set{(a,\infty), (-\infty,b) \st a,b \in \R}$ is a sub-basis on $\R$.\eggqed
 \end{negg}
 
 \begin{nprop}
@@ -237,11 +240,15 @@ Show that
 \end{enumerate}
 \end{exercise}
 
+\begin{exercise}
+  Show that in general $\closure{H \cap K} \neq \closure{H} \cap \closure{K}$.
+\end{exercise}
+
 \begin{nlemma}
   Take $A \subset X$. Then,
   \begin{align*}
     \closure{A} &= \set{x \in X \st U \cap A \neq \emptyset \text{ for every open neighbourhood } U \text{ of } x}\\
-    &= \set{x \in X \st \text{ every open neighbourhood of } x \text{ intersects } A}\\
+    &= \set{x \in X \st \text{ every open neighbourhood of } x \text{ intersects } A}.
   \end{align*}
 \end{nlemma}
 \begin{proof}
@@ -255,7 +262,9 @@ Show that
   TBC.
 \end{proof}
 
-CHARACTERISATION OF THE CLOSURE IN METRIC SPACES
+\begin{nprop}
+  Let $(X,d)$ be a metric space, and let $T$ be the resulting topology. Take $A \subset X$. Then, $\closure{A} = \set{\text{limits of convergent sequences in }A}$.
+\end{nprop}
 
 \begin{ndfn}[Interior]
   The interior $\interior{A}$ of $A \subset X$ is the union of all the open sets of $X$ contained within $A$
@@ -267,15 +276,64 @@ Show that
 \item $A$ is open $\iff A = \interior{A}$.
 \item $\interior{(\interior{A})} = \interior{A}$.
 \item $H \subset K \implies \interior{H} \subset \interior{K}$.
-\item $\interior{(H \cup K)} = \interior{H} \cup \interior{K}$.
+\item $\interior{(H \cap K)} = \interior{H} \cap \interior{K}$.
 \end{enumerate}
 \end{exercise}
 
-BOUNDARY.
+\begin{exercise}
+  Show that in general $\interior{(H \cup K)} \neq \interior{H} \cup \interior{K}$.
+\end{exercise}
 
-LIMIT POINTS AND ISOLATED POINTS.
+\begin{nlemma}\label{lemm:closure-interior}
+  Take $A \subseteq X$. Then,
+  \begin{equation*}
+    \closure{A} = X-\interior{(X-A)}
+    \quad\text{and}\quad
+    \interior{A} = X-\closure{X-A}.
+  \end{equation*}
+\end{nlemma}
 
-LARGE AND SMALL SUBSETS. DENSE, NOWHERE DENSE, MEAGRE.
+\begin{ndfn}
+  The boundary, $\pd H$, of $H \subseteq X$ is the set of all the points $x \in X$ whose every open neighbourhood has a non-empty intersection with both $H$ and $X-H$. That is
+  \begin{equation*}
+  \pd H = \set{x \in X \st U \text{ op. nbh. of }x \implies U \cap H \neq \emptyset, U \cap (X-H) \neq \emptyset}.
+  \end{equation*}
+\end{ndfn}
+
+Note that $\pd H = \closure{H} \cap \closure{X-H}$, so $\pd H$ is always closed.
+
+The following result is very useful for actually calculating $\pd H$.
+\begin{nlemma}
+  For any $H \subseteq X$, we have $\pd H = \closure{H} - \interior{H}$.
+\end{nlemma}
+\begin{proof}
+  Firstly, $\pd H = \closure{H} \cap \closure{X-H}$. Then, using lemma (\ref{lemm:closure-interior}) we get $\closure{X-H} = X - \interior{H}$. Therefore,
+  \begin{equation*}
+  \pd H = \closure{H} \cap (X-\interior{H}) = \closure{H}-\interior{H}.
+  \end{equation*}
+\end{proof}
+
+\begin{ndfn}[Limit and isolated points]
+  A point $x \in X$ is called a limit point of a set $S \subseteq X$ if every open neighbourhood of $x$ intersects $S-\set{x}$. A point that is not a limit point of $S$ is called an isolated point.
+\end{ndfn}
+
+\begin{exercise}
+  Show that $\closure{S} = S \cup \set{\text{all limit points of }S}$.
+\end{exercise}
+
+\begin{ndfn}
+  We say that $A \subseteq X$ is
+  \begin{itemize}
+  \item dense in $X$, if $\closure{A}=X$;
+  \item nowhere dense in $X$, if $\interior{(\closure{A})}=\emptyset$;
+  \item meagre in $X$, if it is a union of at most countably infinite nowhere dense sets;
+  \end{itemize}
+\end{ndfn}
+A set that is meagre is also said to be `of the first category in $X$'.
+
+\begin{negg}
+  $\Q$ and $\R-\Q$ are both dense in $\R$. All the singleton sets in $\R$ are nowhere dense, so $\Q$ is also meagre in $\R$. However, $\interior{(\closure{\Q})} = \interior{\R}\neq\emptyset$. So, $\Q$ is not nowhere dense in $\R$.
+\end{negg}
 
 \subsection{Separability and the Hausdorff property}
 One way to show that a topology is not metrizable is to find a property that every metrizable topological space must have, and show that it fails. The Hausdorff property is one such property.
@@ -316,7 +374,7 @@ EXAMPLES: INDISCRETE. ZARISKI.
 \begin{proof}
   Let $(a_n)$ be a convergent sequence in $X$ with a limit $a \in X$. Then, for every $b \in X$ such that $b \neq a$, we can find neighbourhoods $U$, $V$ of $a$ and $b$, respectively, such that $U \cap V = \emptyset$. Now, by definition of convergence to $a$, there exists $N \in \N$ such that $a_n \in U$ for $n \geq N$. Thus, there is no $N' \in \N$ such that $a_n \in V$ for $n \geq N'$. This shows that $b$ cannot be a limit of $(a_n)$.
 \end{proof}
-Note: there are some non-Hausdorff topologies in which convergent sequences have a unique limit.
+There are some non-Hausdorff topologies in which convergent sequences have a unique limit.
 
 The topological spaces with the Hausdorff property allow their elements to be separated from each other by disjoint open neighbourhoods. This additional criteria is only one of the several different `separation conditions' that one might need, depending on the context. These criteria are often called Tychonoff separation axioms (or simply separation axioms). The Kolmogorov classification of topological separability is given below.
 \begin{ndfn}[$T_{0}$ spaces]

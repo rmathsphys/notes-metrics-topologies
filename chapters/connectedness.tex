@@ -1,5 +1,6 @@
 %!TEX root = ../main.tex
 \section{Connectedness}
+\subsection{Preliminary definitions}
 \begin{ndfn}[Partition]
   Take $A, B \subseteq X$. We say that the pair $(A,B)$ is a partition of $X$ if $X = A \cup B$ and $A \cap B = \emptyset$.
 \end{ndfn}
@@ -18,7 +19,7 @@ A topological space that is not connected, is called disconnected.
   A subset $S \subseteq X$ is connected (disconnected) if $S$ is connected (disconnected) as a topological space with the subspace topology.
 \end{ndfn}
 
-\begin{nthm}
+\begin{nthm}\label{thm:disconnected-equiv}
   The following statements are equivalent:
   \begin{enumerate}
   \item $X$ is disconnected.
@@ -29,7 +30,7 @@ A topological space that is not connected, is called disconnected.
   \end{enumerate}
 \end{nthm}
 
-In (v), the co-domain can be any set with exactly two distint elements; the choice $\set{0,1}$ is arbitrary.
+In (v), the co-domain can be any set with exactly two distinct elements; the choice $\set{0,1}$ is arbitrary.
 
 (v) can be used to show that $X$ is connected by showing that any continuous $f: X \to \set{0,1}$ must be constant.
 
@@ -62,6 +63,94 @@ An interval in $\R$ is one of the following sets
 \end{nlemma}
 This suggests that an interval can simply be defined as a connected subset of $\R$.
 
-ADD EXAMPLES.
+\subsection{Operations on connected sets}
+\begin{nprop}\label{thm:connected-check-a}
+  Suppose that $C_j$ ($j \in J$) are connected subsets of $X$, and $C_i \cap C_j \neq \emptyset$ for every $i,j$. Then,
+  \begin{equation*}
+    K = \bigcap_{j \in J} C_j
+  \end{equation*}
+  is also a connected subset of $X$.
+\end{nprop}
 
-PATH CONNECTEDNESS.
+\begin{nprop}\label{thm:connected-check-b}
+  Suppose that $C_1$ and $C_2$ are connected subsets of $X$ and $\closure{C_1} \cap C_2 \neq \emptyset$. Then, $C_1 \cup C_2$ is connected.
+\end{nprop}
+
+\begin{nthm}\label{thm:connected-check-c}
+  Suppose that $C$ and $C_j$ ($j \in J$) are connected subsets of $X$, and $C_j \cap \closure{C} \neq \emptyset$. Then,
+  \begin{equation*}
+    K = C \cup \left(\bigcup_{j \in J} C_j\right)
+  \end{equation*}
+  is connected.
+\end{nthm}
+
+\begin{ncor}\label{thm:connected-check-d}
+  If $C \subset T$ is connected, then any set $K$ satisfying $C \subset K \subset \closure{C}$ is also connected.
+\end{ncor}
+\begin{proof}
+  We have $K = C \cup \bigcup_{x \in K} \set{x}$ and $\set{x} \cap \closure{C} \neq \emptyset$ for each $x \in K$.
+\end{proof}
+
+\begin{nthm}\label{thm:connected-invariant}
+  The continuous image of a connected set is connected.
+\end{nthm}
+\begin{proof}
+  Let $f: X \to Y$ be a continuous map, and suppose $X$ is connected. If $f(X)$ is not connected then there exists a surjective continuous map $g: f(X) \to \set{0,1}$. But then $g \circ f: X \to \set{0,1}$ is continuous and surjective. By theorem (\ref{thm:disconnected-equiv}), this implies that $X$ is disconnected, which is a contradiction. So, $f(X)$ is connected.
+\end{proof}
+This proves that connectedness is a topological invariant.
+
+\begin{nthm}\label{thm:connected-product}
+  Let $X$ and $Y$ be connected topological spaces. Then, $X \times Y$ is also connected, using the product topology.
+\end{nthm}
+
+\begin{negg}
+  Some examples (EXPAND SEPARATELY):
+  \begin{itemize}
+  \item $\R^2 = \R \times \R$ is connected. (By theorem (\ref{thm:connected-product}).)
+  \item Any circle in $\R$ is connected. (It is a continuous image of an interval in $\R$.)
+  \item The `topologist's sine curve' $\mathcal{S}$ is connected.
+  \begin{equation*}
+    \mathcal{S} = \set*{\left(x, \sin\frac{1}{x}\right) \st x \in \R, x \neq 0} \cup \set{(0,0)}.
+  \end{equation*}
+  \item The `harmonic comb'
+  \begin{equation*}
+    \set{(x,y) \set y=0, x \in (0,1]} \cup \set{(1/n, y) \set n \in \N, y \in [0,1]} \cup \set{(0,1)}
+  \end{equation*}
+  is connected.\eggqed
+  \end{itemize}
+\end{negg}
+
+Theorem (\ref{thm:connected-invariant}) already established that connectedness is a topological invariant. For practical purposes, a more useful invariant is the following property: `$X-\set{x}$ is connected for every $x \in X$'.
+
+\begin{negg}
+  We can use this property to prove that certain topological spaces are not homeomorphic.
+  \begin{itemize}
+  \item $[0,1]$ is not homeomorphic to the circle $S^1$: $[0,1/2)\cup(1/2,1]$ is disconnected, but with an arbitrary point removed the circle is still connected.
+
+  \item $\R$ is not homeomorphic to $\R^2$: $(-\infty,0)\cup(0,\infty)$ is disconnected, but $\R^2 - \set{x}$ is still connected for every $x \in \R^2$.\eggqed
+  \end{itemize}
+\end{negg}
+
+\subsection{Path-connected spaces}
+\begin{ndfn}[Path]
+  Take $a,b \in X$. A path (in $X$) from $a$ to $b$ is a continuous map $\varphi: [0,1] \to X$ such that $\varphi(0)=a$ and $\varphi(1)=b$.
+\end{ndfn}
+
+\begin{ndfn}[Path-connected]
+  A topological space $X$ is called path-connected if every pair of points in $X$ can be joined using a path in $X$.
+\end{ndfn}
+
+\begin{nthm}\label{thm:connected-path-connected}
+  A path-connected space is connected.
+\end{nthm}
+\begin{proof}
+  Fix some $a \in X$, and consider any $b \in X$. Then, there is a path $\varphi: [0,1] \to X$. The Let $C_b = \varphi([0,1])$. This is connected because $\varphi$ is continuous and $[0,1]$ is connected.
+
+  Then, $X = \set{a} \cup \bigcup_{b \in X} C_b$, and each $C_b$ contains $a$. So, by theorem (\ref{thm:connected-check-c}), $X$ is connected.
+\end{proof}
+
+The converse of this theorem is not true in general. For example, the `harmonic comb' and the `topologist's sine curve' studied earlier are connected but not path connected.
+
+\begin{nprop}
+  Connected open sets of $\R^n$ are path connected.
+\end{nprop}

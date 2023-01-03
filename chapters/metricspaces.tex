@@ -174,7 +174,7 @@ It is very important to note that if a set is \emph{not} open, then it is not ne
   The single point set $\set{x}$, with $x\in\R$ is not open and closed in the metric space $\R$, using the standard metric. However, in the discrete metric $\set{x}$ is open.\eggqed
 \end{negg}
 
-MORE EXAMPLES
+% MORE EXAMPLES
 
 \begin{nlemma}
   The open ball is open. The closed ball is closed.
@@ -580,20 +580,32 @@ Now, we can easily show the continuity of the composition of two continuous func
   Take $U \subseteq Z$ open. Then $g^{-1}(U) \subseteq Y$ is open. So, $f^{-1}(g^{-1}(U)) \equiv (g \circ f)^{-1}(U)$ is open in $X$.
 \end{proof}
 
-PRACTICALLY IMPORTANT: USING CTY TO SHOW THAT SETS ARE OPEN OR CLOSED.
+% PRACTICALLY IMPORTANT: USING CTY TO SHOW THAT SETS ARE OPEN OR CLOSED.
 
-CONCEPTUALLY IMPORTANT: ABOUT TOPOLOGICALLY EQUIVALENT METRICS.
+% CONCEPTUALLY IMPORTANT: ABOUT TOPOLOGICALLY EQUIVALENT METRICS.
 
+\subsection{Isometries, contractions and homeomorphisms}
 Before closing this section, we define a few very important classes of functions.
 
 An isometry is a distance-preserving map between metric spaces.
 \begin{ndfn}[Isometry]
-  An isometry between $X$ and $Y$ is a bijective function $f:X \to Y$ such that
+  An isometry between $X$ and $Y$ is a bijective function $f:X \to Y$ such that for all $a,b \in X$
   \begin{equation*}
-    d_{Y}(f(x), f(y)) = d_{X}(x, y).
+    d_{Y}(f(a), f(b)) = d_{X}(a, b).
   \end{equation*}
 \end{ndfn}
 If an isometry exists between $X$ and $Y$, then they are called isometric (to each other). It is an easy exercise to show that an isometry is always continuous. (This follows from the previously studied example that $x \mapsto d(x,a)$ is continuous for all $a \in X$.)
+
+\begin{ndfn}[Contraction]
+  A function $f:X \to X$ is a contraction if there exists a constant $0 \leq \alpha < 1$ such that for all $a,b \in X$
+  \begin{equation*}
+    d_{Y}(f(a), f(b)) \leq \alpha d_{X}(a, b).
+  \end{equation*}
+\end{ndfn}
+Such functions have a remarkable property when the domain is a complete metric space.
+\begin{nthm}
+  If $f: X \to X$ is a contraction, and $X$ is a complete metric space, then $f$ has a unique fixed point. That is, there is a unique $x_0 \in X$, such that $f(x_0) = x_0$.
+\end{nthm}
 
 Next, if we drop the relationship between the metrics, and instead require bi-continuity explicitly, then we arrive at the notion of a homeomorphism. This will play a central role in the study of topological spaces.
 \begin{ndfn}[Homeomorphism]
