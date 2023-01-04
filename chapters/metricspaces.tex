@@ -1,6 +1,6 @@
 %!TEX root = ../main.tex
 \section{Metric Spaces}
-More general than norms is the notion of a metric. The idea is that a metric is a measure of distance between any two elements in a given set; the norm, on the other hand, is a measure of magnitude of each element individually.
+More general than norms is the notion of metrics. The idea is that a metric is a measure of distance between any two elements in a given set; the norm, on the other hand, is a measure of magnitude of each element individually.
 
 COMMENT ABOUT REAL ANALYSIS.
 
@@ -164,11 +164,13 @@ Throughout this section, $(X,d)$ shall represent a general metric space.
 \end{ndfn}
 This leads us to define the notion of an \emph{open (closed) set}; one of the most important concepts in this course.
 
-\begin{ndfn}[Open and closed sets]
-  A set $A \subseteq X$ is called open if $\forall x \in A$, $\exists \varepsilon > 0$, such that $\oB_{\varepsilon}(x) \subseteq A$. A set $F$ is called closed if and only if its complement in $X$ is open (i.e. if and only if $X-F$ is open).
+\begin{ndfn}[Open sets]
+  A set $A \subseteq X$ is called open if $\forall x \in A$, $\exists \varepsilon > 0$, such that $\oB_{\varepsilon}(x) \subseteq A$.
+\end{ndfn}
+\begin{ndfn}[Closed sets]
+  A set $F$ is called closed if and only if its complement in $X$ is open (i.e. if and only if $X-F$ is open).
 \end{ndfn}
 It is very important to note that if a set is \emph{not} open, then it is not necessarily closed. In particular, a set can also be both open and closed, or neither open nor closed.
-
 
 \begin{negg}
   The single point set $\set{x}$, with $x\in\R$ is not open and closed in the metric space $\R$, using the standard metric. However, in the discrete metric $\set{x}$ is open.\eggqed
@@ -185,13 +187,13 @@ This also justifies their names.
   The sets $\emptyset$ and $X$ are always both open and closed in any metric space.
 \end{nthm}
 \begin{proof}
-  By definition, $\emptyset$ is open if
+  By definition, $\emptyset$ is open if and only if
   \begin{equation*}
     \forall x \in X \left(x \in \emptyset \implies \exists\varepsilon>0 (B_{\varepsilon}(x) \subseteq \emptyset)\right).
   \end{equation*}
   But $x \in \emptyset$ is false, so this statement is vacuously true. Thus, $\emptyset$ is open.
 
-  Next, $X$ is open if
+  Next, $X$ is open if and only if
   \begin{equation*}
     \forall x \in X \left(x \in X \implies \exists\varepsilon>0 (B_{\varepsilon}(x) \subseteq X)\right).
   \end{equation*}
@@ -275,9 +277,9 @@ Unless stated otherwise, $X$ shall denote a metric space, with metric $d$.
   Such a sequence is called convergent in $(X,d)$, and we write $\lim_{n\to\infty} a_n = \ell$, or simply $(a_n) \to \ell$, suppressing the underlying metric space.
 \end{ndfn}
 
-This is a generalisation of the definition of the limit of a sequence in $\R^n$. There $\norm*{a_n - l}$ is used in place of $d(a_n, \ell)$. But this simply corresponds to using the Euclidean metric for the calculation of distance.
+This is a generalisation of the definition of the limit of a sequence in $\R^n$. There $\norm*{a_n - l}$ was used in place of $d(a_n, \ell)$. But this simply corresponds to using the Euclidean metric for the calculation of distance.
 
-This generalisation suggests that the convergence of $(a_n)$ could depend on the choice of the metric.
+This definition suggests that the convergence of $(a_n)$ depends on the choice of the metric.
 \begin{negg}
   Consider the sequence $a_n = 1/n$ defined on $\R$. It is easy to show that this converges to $0$ under the standard metric of $\R$.
 
@@ -285,7 +287,7 @@ This generalisation suggests that the convergence of $(a_n)$ could depend on the
   \begin{equation*}
     d_s\left(\frac{1}{n},\ell\right) < \varepsilon \iff d_s\left(\frac{1}{n},\ell\right) = 0 \iff 1/n = \ell, \forall n>N
   \end{equation*}
-  for some $N \in \N$. This is not possible. Therefore, $1/n$ is not convergent in $(\R, d_s)$.
+  for some $N \in \N$. This is not possible. Therefore, $1/n$ is not convergent in $(\R, d_s)$.\eggqed
 \end{negg}
 
 \begin{nex}
@@ -396,7 +398,7 @@ The similarity between the definition of convergent and Cauchy sequences motivat
 It is crucial to note that the converse of this statement is not true in general.
 
 \subsection{Completeness}
-\begin{ndfn}
+\begin{ndfn}[Complete metric spaces]
   A metric space $(X,d)$ is called complete if every Cauchy sequence $(a_n)$ in $X$ converges to a limit $\ell$ in $X$.
 \end{ndfn}
 

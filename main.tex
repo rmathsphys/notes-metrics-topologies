@@ -7,6 +7,10 @@
 \graphicspath{{images/}}
 
 \usepackage{tikz}
+\usepackage{tikz-cd}
+\tikzset{>=stealth}
+\tikzcdset{arrow style=tikz}
+
 \setlist[enumerate,1]{label=(\roman*)}
 \setlist[enumerate,2]{label=\alph*.}
 
@@ -37,9 +41,9 @@
 \input{chapters/compactness}
 \input{chapters/connectedness}
 
-\appendix
-\input{chapters/app-vectorspaces}
-\input{chapters/app-sequences}
+% \appendix
+% \input{chapters/app-vectorspaces}
+% \input{chapters/app-sequences}
 
 \nocite{*}
 \clearpage
