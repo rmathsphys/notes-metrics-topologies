@@ -432,27 +432,37 @@ To check continuity of $f$, it is sufficient to check it for a sub-basis. Also, 
 \end{nlemma}
 
 \subsection{Algebra of continuity}
-Composition of maps.
+In proposition (\ref{prop:composition}) we proved that if $f:X \to Y$ and $g:Y \to Z$ are two continuous maps and $X,Y,Z$ are metric spaces then then composition $g \circ f: X \to Z$ is also continuous. This result remains true when $X,Y,Z$ are any generic topological space. The proof (given in terms of open sets) remains unchanged.
 
-Projection map.
+\begin{ndfn}[Projection map]
+  Let $X,Y$ be topological spaces. The function $\pi: X \times Y \to X$ with $(x, y) \mapsto x$, called the projection map. This can be extended to any product of topological spaces.
+\end{ndfn}
 
-Component-wise continuity.
+\begin{nprop}
+  The projection map $\pi: X \times Y \to X$ with $(x, y) \mapsto x$ is continuous.
+\end{nprop}
 
-Examples.
+\begin{nprop}
+  Let $X,Y,S$ be topological spaces. The function $f: S \to X \times Y$ with $t \mapsto (f_1(t), f_2(t))$ is continuous if and only if both $f_1 : S \to X$ and $f_2 : S \to Y$ are continuous.
+\end{nprop}
+This says that such a function $f$ is continuous if and only if each of its components is continuous. The content of this proposition is often used when studying the continuity (and later differentiability) of functions from $\R$ to $\R^n$.
+
+EXAMPLES.
 
 \subsection{Homeomorphisms}
-Definition.
+Recall that a function $f: X \to Y$ is called a homeomorphism if it is bijective and both $f$ and $f^{-1}$ are continuous (see definition \ref{def:homeomorphism}). Note that if $f$ is a homeomorphism, then so is $f^{-1}$.
 
-Homeomorphic spaces. Notation and example.
+EXAMPLES OF MAPS THAT ARE HOMEOMORPHISMS.
 
-% \begin{nprop}
-%   Let $f: X \to Y$ be continuous, and let $A \subseteq X$ be non-empty. Then, the restriction of $f$ to $A$, $f|_{A} : A \to Y$ is also continuous. (Here, $A$ inherits the metric from $X$.)
-% \end{nprop}
-% \begin{proof}
-%   Let $U \subseteq A$ be open in $A$. Then $f|_{A}^{-1}(U) = f^{-1}(U) \cap A$. But, $f^{-1}(U)$ is open in $X$. So, $f^{-1}(U) \cap A$ is open in $A$. In other words, $f|_{A}^{-1}(U)$ is open in $A$, and $f|_{A}$ is continuous.
-% \end{proof}
-% TO BE DEVELOPED: PROJECTION MAPS ARE CTS. CTS MAP INTO A PRODUCT SPACE. THIS REQUIRES THE INTRODUCTION OF PRODUCT METRIC.
+\begin{ndfn}
+  Topological spaces $X$ and $Y$ are called homeomorphic, if there exists a homeomorphism $f: X \to Y$. Then we write $X \homeo Y$.
+\end{ndfn}
 
+It is easy to check that being homeomorphic is an equivalence relation (exercise). In fact, in the category of topological spaces, `homeomorphic' is taken to mean `same as topological spaces'. In other words, if $X \homeo Y$ then all the `topological' properties of $X$ and $Y$ are the same, even though $X$ and $Y$ themselves might be very different.
+
+SOME EXAMPLES OF SPACES THAT ARE HOMEOMORPHIC AND THOSE THAT ARE NOT.
+
+One of the fundamental objectives of topology is to classify spaces up to homeomorphism.
 
 \subsection{Topological invariance}
 \begin{ndfn}[Topological invariants]
@@ -462,3 +472,7 @@ Homeomorphic spaces. Notation and example.
 Examples of topological invariants include: finiteness, Hausdorff property, metrisability, compactness, connectedness.
 
 Some properties that are not topological invariants: boundedness, completeness.
+
+Showing that two topological spaces are homeomorphic is in general a difficult task. Because one needs to prove the existence of a homeomorphism between the two spaces. There is no complete list of topological invariants that can be computed for each space and compared to check if they are the same. On the other hand, it is usually easier to show when two spaces are \emph{not} homeomorphic. In this case one only needs to find a topological invariant that is different for the two spaces. For example, if $X$ is finite and $Y$ is infinite as set then they can never be homeomorphic as topological spaces. Similarly, if $X$ is a metrisable topological space and $Y$ is not, then they cannot be homeomorphic. However, as mentioned before, it it possible that both $X$ and $Y$ might be metrisable but still not be homeomorphic.
+
+MORE EXAMPLES OF SPACES THAT ARE NOT HOMEOMORPHIC.
